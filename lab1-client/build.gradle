@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation "javax.xml.soap:javax.xml.soap-api:${javaxSoapVersion}"
+    implementation "com.sun.xml.messaging.saaj:saaj-impl:${saajVersion}"
+    implementation "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
+    implementation "com.sun.xml.bind:jaxb-impl:${jaxbImplVersion}"
+    runtimeOnly "org.glassfish.jaxb:jaxb-runtime:${jaxbRuntimeVersion}"
+}
+
+
+test {
+    useJUnitPlatform()
+}

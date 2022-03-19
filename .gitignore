@@ -1,0 +1,14 @@
+/lab1-server-j2ee/.idea/
+/lab1-server-j2ee/.gradle/
+/lab1-server-j2ee/build/
+/lab1-server-j2ee/*.iml
+
+/lab1-server-standalone/.idea/
+/lab1-server-standalone/.gradle/
+/lab1-server-standalone/build/
+/lab1-server-standalone/*.iml
+
+/lab1-client/.idea/
+/lab1-client/.gradle/
+/lab1-client/build/
+/lab1-client/*.iml
