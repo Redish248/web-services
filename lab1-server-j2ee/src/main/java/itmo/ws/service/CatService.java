@@ -1,71 +1,28 @@
 package itmo.ws.service;
 
-import itmo.ws.dao.CatDao;
 import itmo.ws.model.Cat;
 
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
-import javax.jws.WebService;
-import javax.xml.bind.annotation.XmlElement;
 import java.util.List;
 
-@WebService(serviceName = "CatService")
-public class CatService {
-    private final CatDao catDao = new CatDao();
+public interface CatService {
 
-    @WebMethod(operationName = "getCats")
-    public List<Cat> getCats() {
-        return catDao.getCats();
-    }
+    List<Cat> getCats();
 
-    @WebMethod(operationName = "getCatsByName")
-    public List<Cat> getCatsByName(@WebParam(name = "name") @XmlElement(required=true) String name) {
-        return catDao.getCatsByName(name);
-    }
+    List<Cat> getCatsByName(String name);
 
-    @WebMethod(operationName = "getCatByUid")
-    public Cat getCatByUid(@WebParam(name = "uid") @XmlElement(required=true) int uid) {
-        return catDao.getCatByUid(uid);
-    }
+    Cat getCatByUid(int uid);
 
-    @WebMethod(operationName = "getCatsByDescription")
-    public List<Cat> getCatsByDescription(@WebParam(name = "eyesColor") @XmlElement(required=true) String eyesColor,
-                                          @WebParam(name = "furColor") @XmlElement(required=true) String furColor) {
-        return catDao.getCatsByDescription(eyesColor, furColor);
-    }
+    List<Cat> getCatsByDescription(String eyesColor, String furColor);
 
-    @WebMethod(operationName = "getCatsByBreed")
-    public List<Cat> getCatsByBreed(@WebParam(name = "breed") @XmlElement(required=true) String breed) {
-        return catDao.getCatsByBreed(breed);
-    }
+    List<Cat> getCatsByBreed(String breed);
 
-    @WebMethod(operationName = "getCatsByOwner")
-    public List<Cat> getCatsByOwner(@WebParam(name = "owner") @XmlElement(required=true) String owner) {
-        return catDao.getCatsByOwner(owner);
-    }
+    List<Cat> getCatsByOwner(String owner);
 
-    @WebMethod(operationName = "getCatsByOwnerAndName")
-    public List<Cat> getCatsByOwnerAndName(@WebParam(name = "name") @XmlElement(required=true) String name,
-                                           @WebParam(name = "owner") @XmlElement(required=true) String owner) {
-        return catDao.getCatsByOwnerAndName(name, owner);
-    }
+    List<Cat> getCatsByOwnerAndName(String name, String owner);
 
-    @WebMethod(operationName = "getCatsByNameAndAge")
-    public List<Cat> getCatsByNameAndAge(@WebParam(name = "name") @XmlElement(required=true) String name,
-                                         @WebParam(name = "age") @XmlElement(required=true) int age) {
-        return catDao.getCatsByNameAndAge(name, age);
-    }
+    List<Cat> getCatsByNameAndAge(String name, int age);
 
-    @WebMethod(operationName = "getCatsByBreedAndOwner")
-    public List<Cat> getCatsByBreedAndOwner(@WebParam(name = "breed") @XmlElement(required=true) String breed,
-                                            @WebParam(name = "owner") @XmlElement(required=true) String owner) {
-        return catDao.getCatsByBreedAndOwner(breed, owner);
-    }
+    List<Cat> getCatsByBreedAndOwner(String breed, String owner);
 
-    @WebMethod(operationName = "getCatsByFullDescription")
-    public List<Cat> getCatsByFullDescription(@WebParam(name = "eyesColor") @XmlElement(required=true) String eyesColor,
-                                              @WebParam(name = "furColor") @XmlElement(required=true) String furColor,
-                                              @WebParam(name = "breed") @XmlElement(required=true) String breed) {
-        return catDao.getCatsByFullDescription(eyesColor, furColor, breed);
-    }
+    List<Cat> getCatsByFullDescription(String eyesColor, String furColor, String breed);
 }

@@ -3,8 +3,9 @@ package itmo.ws.dao;
 import itmo.ws.builder.ResultSetToCatBuilder;
 import itmo.ws.config.ConnectionUtil;
 import itmo.ws.model.Cat;
+import itmo.ws.service.CatService;
+import lombok.RequiredArgsConstructor;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,10 +16,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CatDao {
+@RequiredArgsConstructor
+public class CatDao implements CatService {
 
-    @Resource(lookup = "jdbc/web_services")
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
     private final ResultSetToCatBuilder catBuilder = new ResultSetToCatBuilder();
 

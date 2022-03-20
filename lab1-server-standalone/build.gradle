@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     implementation "com.sun.xml.ws:webservices-rt:${wsVersion}"
+    implementation "com.sun.xml.bind:jaxb-impl:${jaxbVersion}"
     implementation "org.postgresql:postgresql:${postgresVersion}"
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"

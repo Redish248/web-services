@@ -1,6 +1,6 @@
 package itmo.ws.config;
 
-import itmo.ws.service.CatService;
+import itmo.ws.impl.CatWebServiceImpl;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -14,7 +14,7 @@ public class ConnectionUtil {
         try {
             result = dataSource.getConnection();
         } catch (SQLException ex) {
-            Logger.getLogger(CatService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CatWebServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
