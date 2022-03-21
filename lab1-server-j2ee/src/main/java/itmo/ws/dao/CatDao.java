@@ -1,12 +1,10 @@
 package itmo.ws.dao;
 
 import itmo.ws.builder.ResultSetToCatBuilder;
-import itmo.ws.config.ConnectionUtil;
 import itmo.ws.model.Cat;
 import itmo.ws.service.CatService;
 import lombok.RequiredArgsConstructor;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +17,7 @@ import java.util.logging.Logger;
 @RequiredArgsConstructor
 public class CatDao implements CatService {
 
-    private final DataSource dataSource;
+    private final Connection connection;
 
     private final ResultSetToCatBuilder catBuilder = new ResultSetToCatBuilder();
 
@@ -33,7 +31,7 @@ public class CatDao implements CatService {
 
     public Cat getCatByUid(int uid) {
         Cat cat = null;
-        try (Connection connection = ConnectionUtil.getConnection(dataSource)) {
+        try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("select * from cat where uid ='" + uid + "'");
             rs.next();
@@ -74,7 +72,7 @@ public class CatDao implements CatService {
 
     private List<Cat> executeQuery(String query) {
         List<Cat> cats = new ArrayList<>();
-        try (Connection connection = ConnectionUtil.getConnection(dataSource)) {
+        try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             cats = parseCatFromDatabase(rs);
