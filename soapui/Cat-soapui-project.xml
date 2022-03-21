@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="f0e989a8-449f-47a8-8ba2-b066e168030e" activeEnvironment="Default" name="Cat" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="eaf40ba3-8cc0-4a8b-98e1-bef0710f8ac6" wsaVersion="NONE" name="CatWebServiceImplPortBinding" type="wsdl" bindingName="{http://impl.ws.itmo/}CatWebServiceImplPortBinding" soapVersion="1_1" anonymous="optional" definition="file:/home/redish/Desktop/cat.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/home/redish/Desktop/cat.wsdl"><con:part><con:url>file:/home/redish/Desktop/cat.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://impl.ws.itmo/" name="CatService" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://impl.ws.itmo/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://impl.ws.itmo/" schemaLocation="http://localhost:8080/CatService?xsd=1"/>
+    </xsd:schema>
+  </types>
+  <message name="getCats">
+    <part name="parameters" element="tns:getCats"/>
+  </message>
+  <message name="getCatsResponse">
+    <part name="parameters" element="tns:getCatsResponse"/>
+  </message>
+  <message name="getCatsByName">
+    <part name="parameters" element="tns:getCatsByName"/>
+  </message>
+  <message name="getCatsByNameResponse">
+    <part name="parameters" element="tns:getCatsByNameResponse"/>
+  </message>
+  <message name="getCatByUid">
+    <part name="parameters" element="tns:getCatByUid"/>
+  </message>
+  <message name="getCatByUidResponse">
+    <part name="parameters" element="tns:getCatByUidResponse"/>
+  </message>
+  <message name="getCatsByDescription">
+    <part name="parameters" element="tns:getCatsByDescription"/>
+  </message>
+  <message name="getCatsByDescriptionResponse">
+    <part name="parameters" element="tns:getCatsByDescriptionResponse"/>
+  </message>
+  <message name="getCatsByBreed">
+    <part name="parameters" element="tns:getCatsByBreed"/>
+  </message>
+  <message name="getCatsByBreedResponse">
+    <part name="parameters" element="tns:getCatsByBreedResponse"/>
+  </message>
+  <message name="getCatsByOwner">
+    <part name="parameters" element="tns:getCatsByOwner"/>
+  </message>
+  <message name="getCatsByOwnerResponse">
+    <part name="parameters" element="tns:getCatsByOwnerResponse"/>
+  </message>
+  <message name="getCatsByOwnerAndName">
+    <part name="parameters" element="tns:getCatsByOwnerAndName"/>
+  </message>
+  <message name="getCatsByOwnerAndNameResponse">
+    <part name="parameters" element="tns:getCatsByOwnerAndNameResponse"/>
+  </message>
+  <message name="getCatsByNameAndAge">
+    <part name="parameters" element="tns:getCatsByNameAndAge"/>
+  </message>
+  <message name="getCatsByNameAndAgeResponse">
+    <part name="parameters" element="tns:getCatsByNameAndAgeResponse"/>
+  </message>
+  <message name="getCatsByBreedAndOwner">
+    <part name="parameters" element="tns:getCatsByBreedAndOwner"/>
+  </message>
+  <message name="getCatsByBreedAndOwnerResponse">
+    <part name="parameters" element="tns:getCatsByBreedAndOwnerResponse"/>
+  </message>
+  <message name="getCatsByFullDescription">
+    <part name="parameters" element="tns:getCatsByFullDescription"/>
+  </message>
+  <message name="getCatsByFullDescriptionResponse">
+    <part name="parameters" element="tns:getCatsByFullDescriptionResponse"/>
+  </message>
+  <portType name="CatWebServiceImpl">
+    <operation name="getCats">
+      <input wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsRequest" message="tns:getCats"/>
+      <output wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsResponse" message="tns:getCatsResponse"/>
+    </operation>
+    <operation name="getCatsByName">
+      <input wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByNameRequest" message="tns:getCatsByName"/>
+      <output wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByNameResponse" message="tns:getCatsByNameResponse"/>
+    </operation>
+    <operation name="getCatByUid">
+      <input wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatByUidRequest" message="tns:getCatByUid"/>
+      <output wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatByUidResponse" message="tns:getCatByUidResponse"/>
+    </operation>
+    <operation name="getCatsByDescription">
+      <input wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByDescriptionRequest" message="tns:getCatsByDescription"/>
+      <output wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByDescriptionResponse" message="tns:getCatsByDescriptionResponse"/>
+    </operation>
+    <operation name="getCatsByBreed">
+      <input wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByBreedRequest" message="tns:getCatsByBreed"/>
+      <output wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByBreedResponse" message="tns:getCatsByBreedResponse"/>
+    </operation>
+    <operation name="getCatsByOwner">
+      <input wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByOwnerRequest" message="tns:getCatsByOwner"/>
+      <output wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByOwnerResponse" message="tns:getCatsByOwnerResponse"/>
+    </operation>
+    <operation name="getCatsByOwnerAndName">
+      <input wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByOwnerAndNameRequest" message="tns:getCatsByOwnerAndName"/>
+      <output wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByOwnerAndNameResponse" message="tns:getCatsByOwnerAndNameResponse"/>
+    </operation>
+    <operation name="getCatsByNameAndAge">
+      <input wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByNameAndAgeRequest" message="tns:getCatsByNameAndAge"/>
+      <output wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByNameAndAgeResponse" message="tns:getCatsByNameAndAgeResponse"/>
+    </operation>
+    <operation name="getCatsByBreedAndOwner">
+      <input wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByBreedAndOwnerRequest" message="tns:getCatsByBreedAndOwner"/>
+      <output wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByBreedAndOwnerResponse" message="tns:getCatsByBreedAndOwnerResponse"/>
+    </operation>
+    <operation name="getCatsByFullDescription">
+      <input wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByFullDescriptionRequest" message="tns:getCatsByFullDescription"/>
+      <output wsam:Action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByFullDescriptionResponse" message="tns:getCatsByFullDescriptionResponse"/>
+    </operation>
+  </portType>
+  <binding name="CatWebServiceImplPortBinding" type="tns:CatWebServiceImpl">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="getCats">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCatsByName">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCatByUid">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCatsByDescription">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCatsByBreed">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCatsByOwner">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCatsByOwnerAndName">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCatsByNameAndAge">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCatsByBreedAndOwner">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCatsByFullDescription">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="CatService">
+    <port name="CatWebServiceImplPort" binding="tns:CatWebServiceImplPortBinding">
+      <soap:address location="http://localhost:8080/CatService"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/CatService?xsd=1</con:url><con:content><![CDATA[<!--Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e.-->
+<xs:schema version="1.0" targetNamespace="http://impl.ws.itmo/" xmlns:tns="http://impl.ws.itmo/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="getCatByUid" type="tns:getCatByUid"/>
+  <xs:element name="getCatByUidResponse" type="tns:getCatByUidResponse"/>
+  <xs:element name="getCats" type="tns:getCats"/>
+  <xs:element name="getCatsByBreed" type="tns:getCatsByBreed"/>
+  <xs:element name="getCatsByBreedAndOwner" type="tns:getCatsByBreedAndOwner"/>
+  <xs:element name="getCatsByBreedAndOwnerResponse" type="tns:getCatsByBreedAndOwnerResponse"/>
+  <xs:element name="getCatsByBreedResponse" type="tns:getCatsByBreedResponse"/>
+  <xs:element name="getCatsByDescription" type="tns:getCatsByDescription"/>
+  <xs:element name="getCatsByDescriptionResponse" type="tns:getCatsByDescriptionResponse"/>
+  <xs:element name="getCatsByFullDescription" type="tns:getCatsByFullDescription"/>
+  <xs:element name="getCatsByFullDescriptionResponse" type="tns:getCatsByFullDescriptionResponse"/>
+  <xs:element name="getCatsByName" type="tns:getCatsByName"/>
+  <xs:element name="getCatsByNameAndAge" type="tns:getCatsByNameAndAge"/>
+  <xs:element name="getCatsByNameAndAgeResponse" type="tns:getCatsByNameAndAgeResponse"/>
+  <xs:element name="getCatsByNameResponse" type="tns:getCatsByNameResponse"/>
+  <xs:element name="getCatsByOwner" type="tns:getCatsByOwner"/>
+  <xs:element name="getCatsByOwnerAndName" type="tns:getCatsByOwnerAndName"/>
+  <xs:element name="getCatsByOwnerAndNameResponse" type="tns:getCatsByOwnerAndNameResponse"/>
+  <xs:element name="getCatsByOwnerResponse" type="tns:getCatsByOwnerResponse"/>
+  <xs:element name="getCatsResponse" type="tns:getCatsResponse"/>
+  <xs:complexType name="getCatsByName">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByNameResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:cat" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cat">
+    <xs:sequence>
+      <xs:element name="age" type="xs:int"/>
+      <xs:element name="breed" type="xs:string" minOccurs="0"/>
+      <xs:element name="eyes_color" type="xs:string" minOccurs="0"/>
+      <xs:element name="fur_color" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="owner_name" type="xs:string" minOccurs="0"/>
+      <xs:element name="uid" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByNameAndAge">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="age" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByNameAndAgeResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:cat" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCats">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getCatsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:cat" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatByUid">
+    <xs:sequence>
+      <xs:element name="uid" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatByUidResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:cat" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByBreed">
+    <xs:sequence>
+      <xs:element name="breed" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByBreedResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:cat" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByDescription">
+    <xs:sequence>
+      <xs:element name="eyesColor" type="xs:string"/>
+      <xs:element name="furColor" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByDescriptionResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:cat" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByOwnerAndName">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="owner" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByOwnerAndNameResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:cat" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByBreedAndOwner">
+    <xs:sequence>
+      <xs:element name="breed" type="xs:string"/>
+      <xs:element name="owner" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByBreedAndOwnerResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:cat" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByFullDescription">
+    <xs:sequence>
+      <xs:element name="eyesColor" type="xs:string"/>
+      <xs:element name="furColor" type="xs:string"/>
+      <xs:element name="breed" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByFullDescriptionResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:cat" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByOwner">
+    <xs:sequence>
+      <xs:element name="owner" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCatsByOwnerResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:cat" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/CatService</con:endpoint></con:endpoints><con:operation id="fbae0416-9e84-4e94-b181-11d17fe797cd" isOneWay="false" action="" name="getCatByUid" bindingOperationName="getCatByUid" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e0e82655-6560-48f8-adb9-9e317407e22f" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatByUid>
+         <uid>1</uid>
+      </impl:getCatByUid>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatByUidRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="bc8e3368-882a-49e3-9de1-0cbd2b126fc3" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cat-war/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatByUid>
+         <uid>1</uid>
+      </impl:getCatByUid>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatByUidRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="6cd30388-db54-420f-b44b-be07418cbf5f" isOneWay="false" action="" name="getCats" bindingOperationName="getCats" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="82f6c30b-b1e4-4464-9c88-3806f7cec953" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCats/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="6861db47-e432-4480-aad7-2127fa10f535" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cat-war/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCats/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="0856e406-c935-44c8-9c9b-1d81890c01ef" isOneWay="false" action="" name="getCatsByBreed" bindingOperationName="getCatsByBreed" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="407d7f3f-b515-4741-8416-2020d3f62232" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByBreed>
+         <breed>none</breed>
+      </impl:getCatsByBreed>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByBreedRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="520e1886-f084-486f-95e8-ed9236e20c5f" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cat-war/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByBreed>
+         <breed>none</breed>
+      </impl:getCatsByBreed>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByBreedRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="35fa9b69-6d04-4ed3-a005-af295f162b11" isOneWay="false" action="" name="getCatsByBreedAndOwner" bindingOperationName="getCatsByBreedAndOwner" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="04ee1cb1-f445-4dec-8a03-e4a0e4e49b7a" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByBreedAndOwner>
+         <breed>none</breed>
+         <owner>Ira</owner>
+      </impl:getCatsByBreedAndOwner>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByBreedAndOwnerRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="54c060d0-f118-4c45-a015-66d424d7d618" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cat-war/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByBreedAndOwner>
+         <breed>none</breed>
+         <owner>Ira</owner>
+      </impl:getCatsByBreedAndOwner>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByBreedAndOwnerRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="5d8c848c-a3b2-49ae-9df5-9acbe22889d9" isOneWay="false" action="" name="getCatsByDescription" bindingOperationName="getCatsByDescription" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c530917c-7c11-40f6-8883-c3f725e3f12c" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByDescription>
+         <eyesColor>green</eyesColor>
+         <furColor>gray stripped</furColor>
+      </impl:getCatsByDescription>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByDescriptionRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="c1e1e687-d13b-4f15-8da1-bc9ad2035047" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cat-war/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByDescription>
+         <eyesColor>green</eyesColor>
+         <furColor>gray stripped</furColor>
+      </impl:getCatsByDescription>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByDescriptionRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="dbfbf426-ded1-4f8b-89bd-dc0edff8fa3d" isOneWay="false" action="" name="getCatsByFullDescription" bindingOperationName="getCatsByFullDescription" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c90b5e8b-e40a-442d-b89d-9beebd0641f7" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByFullDescription>
+         <eyesColor>green</eyesColor>
+         <furColor>gray stripped</furColor>
+         <breed>none</breed>
+      </impl:getCatsByFullDescription>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByFullDescriptionRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="fa14b84b-9ee0-4649-a467-06516dbb94a2" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cat-war/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByFullDescription>
+         <eyesColor>green</eyesColor>
+         <furColor>gray stripped</furColor>
+         <breed>none</breed>
+      </impl:getCatsByFullDescription>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByFullDescriptionRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="6134990f-e0b0-4b5a-b985-36458446bceb" isOneWay="false" action="" name="getCatsByName" bindingOperationName="getCatsByName" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="cdfee2aa-842c-4def-814a-324a41928917" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByName>
+         <name>Vasya</name>
+      </impl:getCatsByName>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByNameRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="b717c9ad-a6a5-424f-abbf-b7560ec3c9af" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cat-war/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByName>
+         <name>Vasya</name>
+      </impl:getCatsByName>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByNameRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="814b650e-c78c-46c0-afe0-f58cb7a1df75" isOneWay="false" action="" name="getCatsByNameAndAge" bindingOperationName="getCatsByNameAndAge" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1182ab6e-4975-4ea7-a6d8-53c33c33d3bd" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByNameAndAge>
+         <name>Vasya</name>
+         <age>12</age>
+      </impl:getCatsByNameAndAge>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByNameAndAgeRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="60c07b0d-d619-4ca5-8538-9e540f2c3c64" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cat-war/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByNameAndAge>
+         <name>Vasya</name>
+         <age>12</age>
+      </impl:getCatsByNameAndAge>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByNameAndAgeRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="b1b4c93e-6ac5-4563-ae99-c0cdaf796621" isOneWay="false" action="" name="getCatsByOwner" bindingOperationName="getCatsByOwner" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="cd213443-9fe5-4337-8ea5-1d108ea50857" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByOwner>
+         <owner>Ira</owner>
+      </impl:getCatsByOwner>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByOwnerRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="5bdb57c6-c7e4-4248-a456-51e90c339491" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cat-war/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByOwner>
+         <owner>Ira</owner>
+      </impl:getCatsByOwner>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByOwnerRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="1c5c45e7-45b6-4740-bd59-e06d962c6427" isOneWay="false" action="" name="getCatsByOwnerAndName" bindingOperationName="getCatsByOwnerAndName" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c2f7c0e6-62d0-4f23-ad77-574f9bc93d56" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByOwnerAndName>
+         <name>Vasya</name>
+         <owner>Ira</owner>
+      </impl:getCatsByOwnerAndName>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByOwnerAndNameRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="c72138f2-c515-430f-92d0-5f62d0bf56b1" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cat-war/CatService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.itmo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getCatsByOwnerAndName>
+         <name>Vasya</name>
+         <owner>Ira</owner>
+      </impl:getCatsByOwnerAndName>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.itmo/CatWebServiceImpl/getCatsByOwnerAndNameRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
