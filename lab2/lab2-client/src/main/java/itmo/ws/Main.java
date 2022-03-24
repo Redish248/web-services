@@ -13,7 +13,7 @@ public class Main {
         URL url = new URL("http://localhost:8080/CatService?wsdl");
         CatService catService = new CatService(url);
 
-        /*System.out.println("==========GET ALL CATS=============");
+        System.out.println("==========GET ALL CATS=============");
         List<Cat> cats = catService.getCatWebServiceImplPort().getCats();
         printCats(cats);
 
@@ -52,7 +52,7 @@ public class Main {
 
         System.out.println("==========GET ALL CATS BY FULL DESCRIPTION=============");
         cats = catService.getCatWebServiceImplPort().getCatsByFullDescription("green", "gray stripped", "none");
-        printCats(cats);*/
+        printCats(cats);
 
         System.out.println("==========CREATE CAT=============");
         int uid = catService.getCatWebServiceImplPort().createCat("Kitty", 2, "green", "gray stripped", "none", "Ira");
