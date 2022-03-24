@@ -1,14 +1,24 @@
-/lab1-server-j2ee/.idea/
-/lab1-server-j2ee/.gradle/
-/lab1-server-j2ee/build/
-/lab1-server-j2ee/*.iml
+/lab1/lab1-server-j2ee/.idea/
+/lab1/lab1-server-j2ee/.gradle/
+/lab1/lab1-server-j2ee/build/
+/lab1/lab1-server-j2ee/*.iml
 
-/lab1-server-standalone/.idea/
-/lab1-server-standalone/.gradle/
-/lab1-server-standalone/build/
-/lab1-server-standalone/*.iml
+/lab1/lab1-server-standalone/.idea/
+/lab1/lab1-server-standalone/.gradle/
+/lab1/lab1-server-standalone/build/
+/lab1/lab1-server-standalone/*.iml
 
-/lab1-client/.idea/
-/lab1-client/.gradle/
-/lab1-client/build/
-/lab1-client/*.iml
+/lab1/lab1-client/.idea/
+/lab1/lab1-client/.gradle/
+/lab1/lab1-client/build/
+/lab1/lab1-client/*.iml
+
+/lab2/lab2-server-standalone/.idea/
+/lab2/lab2-server-standalone/.gradle/
+/lab2/lab2-server-standalone/build/
+/lab2/lab2-server-standalone/*.iml
+
+/lab2/lab2-client/.idea/
+/lab2/lab2-client/.gradle/
+/lab2/lab2-client/build/
+/lab2/lab2-client/*.iml
