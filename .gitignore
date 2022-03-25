@@ -22,3 +22,13 @@
 /lab2/lab2-client/.gradle/
 /lab2/lab2-client/build/
 /lab2/lab2-client/*.iml
+
+/lab3/lab3-server-standalone/.idea/
+/lab3/lab3-server-standalone/.gradle/
+/lab3/lab3-server-standalone/build/
+/lab3/lab3-server-standalone/*.iml
+
+/lab3/lab3-client/.idea/
+/lab3/lab3-client/.gradle/
+/lab3/lab3-client/build/
+/lab3/lab3-client/*.iml
