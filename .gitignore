@@ -47,3 +47,13 @@
 /lab4/lab4-client/.gradle/
 /lab4/lab4-client/build/
 /lab4/lab4-client/*.iml
+
+/lab5/lab5-server-standalone/.idea/
+/lab5/lab5-server-standalone/.gradle/
+/lab5/lab5-server-standalone/build/
+/lab5/lab5-server-standalone/*.iml
+
+/lab5/lab5-client/.idea/
+/lab5/lab5-client/.gradle/
+/lab5/lab5-client/build/
+/lab5/lab5-client/*.iml

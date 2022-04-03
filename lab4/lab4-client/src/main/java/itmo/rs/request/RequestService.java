@@ -11,7 +11,7 @@ import java.util.List;
 
 public class RequestService {
     //for standalone
-    //private static final String URL = "http://localhost:8080/rest/cats";
+    //private static final String URL = "http://localhost:8081/rest/cats";
     //for J2EE
     private static final String URL = "http://localhost:8080/cat-war-rest/rest/cats";
 

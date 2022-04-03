@@ -3,7 +3,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
-group 'itmo.rs.lab4'
+group 'itmo.rs.lab5'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -11,10 +11,9 @@ repositories {
 }
 
 dependencies {
-    implementation "com.sun.jersey:jersey-server:${jerseyVersion}"
-    implementation "com.sun.jersey:jersey-servlet:${jerseyVersion}"
-    implementation "com.sun.jersey:jersey-grizzly2:${jerseyVersion}"
     implementation "com.sun.jersey:jersey-json:${jerseyVersion}"
+    implementation "com.sun.jersey:jersey-client:${jerseyVersion}"
+    implementation "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${jacksonVersion}"
 
     implementation "org.postgresql:postgresql:${postgresVersion}"
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
@@ -39,7 +38,7 @@ shadowJar {
     manifest {
         attributes 'Main-Class':'itmo.rs.Main'
     }
-    archiveName = 'cat-war.jar'
+    archiveName = 'cat-war-client.jar'
 }
 
 jar {

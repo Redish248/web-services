@@ -11,7 +11,7 @@ import java.net.URI;
 
 public class Main {
     private static final URI BASE_URI =
-            URI.create("http://localhost:8081/rest/");
+            URI.create("http://localhost:8080/rest/");
 
     public static void main(String[] args) {
         HttpServer server = null;
