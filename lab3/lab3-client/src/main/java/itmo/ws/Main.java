@@ -8,45 +8,36 @@ import itmo.ws.impl.PostgreSqlException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class Main {
 
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main(String[] args) throws MalformedURLException, ExecutionException, InterruptedException {
         URL url = new URL("http://localhost:8080/CatService?wsdl");
         CatService catService = new CatService(url);
 
+        // =================================ASYNC====================================
+        System.out.println("==========GET ALL CATS ASYNC=============");
+        printCats(catService.getCatWebServiceImplPort().getCatsAsync().get().getReturn());
+
+        System.out.println("==========GET ALL CATS BY NAME ASYNC=============");
+        printCats(catService.getCatWebServiceImplPort().getCatsByNameAsync("Vasya").get().getReturn());
+
+        System.out.println("==========GET ALL CATS BY UID ASYNC WITH HANDLER=============");
+        catService.getCatWebServiceImplPort().getCatByUidAsync(1, response -> {
+            try {
+                System.out.println("TEST ASYNC CALLBACK");
+                printOneCat(response.get().getReturn());
+                System.out.println("TEST ASYNC CALLBACK");
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+        });
+        System.out.println();
+
+
+        // =================================SYNC====================================
         List<Cat> cats;
-        try {
-            System.out.println("==========GET ALL CATS=============");
-            cats = catService.getCatWebServiceImplPort().getCats();
-            printCats(cats);
-        } catch (PostgreSqlException e) {
-            System.out.println("Error message: " + e.getFaultInfo().getMessage());
-            e.printStackTrace();
-        }
-
-        try {
-            System.out.println("==========GET ALL CATS BY NAME=============");
-            cats = catService.getCatWebServiceImplPort().getCatsByName(null);
-            printCats(cats);
-        } catch (PostgreSqlException e) {
-            System.out.println("Error message: " + e.getFaultInfo().getMessage());
-            e.printStackTrace();
-        } catch (IllegalRequestParameterException e) {
-            System.out.println("SQL error message: " + e.getFaultInfo().getMessage());
-            e.printStackTrace();
-        }
-
-        try {
-            System.out.println("==========GET ALL CATS BY UID=============");
-            Cat cat = catService.getCatWebServiceImplPort().getCatByUid(1);
-            printOneCat(cat);
-            System.out.println();
-        } catch (PostgreSqlException e) {
-            System.out.println("Error message: " + e.getFaultInfo().getMessage());
-            e.printStackTrace();
-        }
-
         try {
             System.out.println("==========GET ALL CATS BY DESCRIPTION=============");
             cats = catService.getCatWebServiceImplPort().getCatsByDescription("green", "gray stripped");
@@ -85,7 +76,7 @@ public class Main {
 
         try {
             System.out.println("==========GET ALL CATS BY OWNER AND NAME=============");
-            cats = catService.getCatWebServiceImplPort().getCatsByOwnerAndName("Vasya","Ira");
+            cats = catService.getCatWebServiceImplPort().getCatsByOwnerAndName("Vasya", "Ira");
             printCats(cats);
         } catch (PostgreSqlException e) {
             System.out.println("Error message: " + e.getFaultInfo().getMessage());
@@ -97,7 +88,7 @@ public class Main {
 
         try {
             System.out.println("==========GET ALL CATS BY NAME AND AGE=============");
-            cats = catService.getCatWebServiceImplPort().getCatsByNameAndAge("Vasya",12);
+            cats = catService.getCatWebServiceImplPort().getCatsByNameAndAge("Vasya", 12);
             printCats(cats);
         } catch (PostgreSqlException e) {
             System.out.println("Error message: " + e.getFaultInfo().getMessage());

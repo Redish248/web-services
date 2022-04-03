@@ -14,6 +14,8 @@ repositories {
 dependencies {
     implementation "javax.xml.soap:javax.xml.soap-api:${javaxSoapVersion}"
     implementation "com.sun.xml.messaging.saaj:saaj-impl:${saajVersion}"
+    implementation 'javax.xml.ws:jaxws-api:2.3.1'
+    implementation 'javax.jws:javax.jws-api:1.1'
     implementation "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
     implementation "com.sun.xml.bind:jaxb-impl:${jaxbImplVersion}"
     runtimeOnly "org.glassfish.jaxb:jaxb-runtime:${jaxbRuntimeVersion}"
@@ -29,6 +31,16 @@ shadowJar {
         attributes 'Main-Class':'itmo.ws.Main'
     }
     archiveName = 'cat-war-client.jar'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 
 jar {

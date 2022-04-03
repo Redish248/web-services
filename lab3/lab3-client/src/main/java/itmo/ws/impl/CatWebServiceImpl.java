@@ -2,14 +2,17 @@
 package itmo.ws.impl;
 
 import java.util.List;
+import java.util.concurrent.Future;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
+import javax.xml.ws.AsyncHandler;
 import javax.xml.ws.FaultAction;
 import javax.xml.ws.RequestWrapper;
+import javax.xml.ws.Response;
 import javax.xml.ws.ResponseWrapper;
 
 
@@ -25,6 +28,29 @@ import javax.xml.ws.ResponseWrapper;
 })
 public interface CatWebServiceImpl {
 
+
+    /**
+     * 
+     * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.GetCatsResponse>
+     */
+    @WebMethod(operationName = "getCats")
+    @RequestWrapper(localName = "getCats", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCats")
+    @ResponseWrapper(localName = "getCatsResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsResponse")
+    public Response<GetCatsResponse> getCatsAsync();
+
+    /**
+     * 
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getCats")
+    @RequestWrapper(localName = "getCats", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCats")
+    @ResponseWrapper(localName = "getCatsResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsResponse")
+    public Future<?> getCatsAsync(
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetCatsResponse> asyncHandler);
 
     /**
      * 
@@ -47,9 +73,38 @@ public interface CatWebServiceImpl {
      * 
      * @param name
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.GetCatsByNameResponse>
+     */
+    @WebMethod(operationName = "getCatsByName")
+    @RequestWrapper(localName = "getCatsByName", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByName")
+    @ResponseWrapper(localName = "getCatsByNameResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByNameResponse")
+    public Response<GetCatsByNameResponse> getCatsByNameAsync(
+        @WebParam(name = "name", targetNamespace = "")
+        String name);
+
+    /**
+     * 
+     * @param name
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getCatsByName")
+    @RequestWrapper(localName = "getCatsByName", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByName")
+    @ResponseWrapper(localName = "getCatsByNameResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByNameResponse")
+    public Future<?> getCatsByNameAsync(
+        @WebParam(name = "name", targetNamespace = "")
+        String name,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetCatsByNameResponse> asyncHandler);
+
+    /**
+     * 
+     * @param name
+     * @return
      *     returns java.util.List<itmo.ws.impl.Cat>
-     * @throws IllegalRequestParameterException
      * @throws PostgreSqlException
+     * @throws IllegalRequestParameterException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -64,6 +119,35 @@ public interface CatWebServiceImpl {
         String name)
         throws IllegalRequestParameterException, PostgreSqlException
     ;
+
+    /**
+     * 
+     * @param uid
+     * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.GetCatByUidResponse>
+     */
+    @WebMethod(operationName = "getCatByUid")
+    @RequestWrapper(localName = "getCatByUid", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatByUid")
+    @ResponseWrapper(localName = "getCatByUidResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatByUidResponse")
+    public Response<GetCatByUidResponse> getCatByUidAsync(
+        @WebParam(name = "uid", targetNamespace = "")
+        int uid);
+
+    /**
+     * 
+     * @param uid
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getCatByUid")
+    @RequestWrapper(localName = "getCatByUid", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatByUid")
+    @ResponseWrapper(localName = "getCatByUidResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatByUidResponse")
+    public Future<?> getCatByUidAsync(
+        @WebParam(name = "uid", targetNamespace = "")
+        int uid,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetCatByUidResponse> asyncHandler);
 
     /**
      * 
@@ -90,9 +174,44 @@ public interface CatWebServiceImpl {
      * @param eyesColor
      * @param furColor
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.GetCatsByDescriptionResponse>
+     */
+    @WebMethod(operationName = "getCatsByDescription")
+    @RequestWrapper(localName = "getCatsByDescription", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByDescription")
+    @ResponseWrapper(localName = "getCatsByDescriptionResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByDescriptionResponse")
+    public Response<GetCatsByDescriptionResponse> getCatsByDescriptionAsync(
+        @WebParam(name = "eyesColor", targetNamespace = "")
+        String eyesColor,
+        @WebParam(name = "furColor", targetNamespace = "")
+        String furColor);
+
+    /**
+     * 
+     * @param eyesColor
+     * @param asyncHandler
+     * @param furColor
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getCatsByDescription")
+    @RequestWrapper(localName = "getCatsByDescription", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByDescription")
+    @ResponseWrapper(localName = "getCatsByDescriptionResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByDescriptionResponse")
+    public Future<?> getCatsByDescriptionAsync(
+        @WebParam(name = "eyesColor", targetNamespace = "")
+        String eyesColor,
+        @WebParam(name = "furColor", targetNamespace = "")
+        String furColor,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetCatsByDescriptionResponse> asyncHandler);
+
+    /**
+     * 
+     * @param eyesColor
+     * @param furColor
+     * @return
      *     returns java.util.List<itmo.ws.impl.Cat>
-     * @throws IllegalRequestParameterException
      * @throws PostgreSqlException
+     * @throws IllegalRequestParameterException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -114,9 +233,38 @@ public interface CatWebServiceImpl {
      * 
      * @param breed
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.GetCatsByBreedResponse>
+     */
+    @WebMethod(operationName = "getCatsByBreed")
+    @RequestWrapper(localName = "getCatsByBreed", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByBreed")
+    @ResponseWrapper(localName = "getCatsByBreedResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByBreedResponse")
+    public Response<GetCatsByBreedResponse> getCatsByBreedAsync(
+        @WebParam(name = "breed", targetNamespace = "")
+        String breed);
+
+    /**
+     * 
+     * @param asyncHandler
+     * @param breed
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getCatsByBreed")
+    @RequestWrapper(localName = "getCatsByBreed", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByBreed")
+    @ResponseWrapper(localName = "getCatsByBreedResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByBreedResponse")
+    public Future<?> getCatsByBreedAsync(
+        @WebParam(name = "breed", targetNamespace = "")
+        String breed,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetCatsByBreedResponse> asyncHandler);
+
+    /**
+     * 
+     * @param breed
+     * @return
      *     returns java.util.List<itmo.ws.impl.Cat>
-     * @throws IllegalRequestParameterException
      * @throws PostgreSqlException
+     * @throws IllegalRequestParameterException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -136,9 +284,38 @@ public interface CatWebServiceImpl {
      * 
      * @param owner
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.GetCatsByOwnerResponse>
+     */
+    @WebMethod(operationName = "getCatsByOwner")
+    @RequestWrapper(localName = "getCatsByOwner", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByOwner")
+    @ResponseWrapper(localName = "getCatsByOwnerResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByOwnerResponse")
+    public Response<GetCatsByOwnerResponse> getCatsByOwnerAsync(
+        @WebParam(name = "owner", targetNamespace = "")
+        String owner);
+
+    /**
+     * 
+     * @param owner
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getCatsByOwner")
+    @RequestWrapper(localName = "getCatsByOwner", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByOwner")
+    @ResponseWrapper(localName = "getCatsByOwnerResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByOwnerResponse")
+    public Future<?> getCatsByOwnerAsync(
+        @WebParam(name = "owner", targetNamespace = "")
+        String owner,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetCatsByOwnerResponse> asyncHandler);
+
+    /**
+     * 
+     * @param owner
+     * @return
      *     returns java.util.List<itmo.ws.impl.Cat>
-     * @throws IllegalRequestParameterException
      * @throws PostgreSqlException
+     * @throws IllegalRequestParameterException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -159,9 +336,44 @@ public interface CatWebServiceImpl {
      * @param owner
      * @param name
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.GetCatsByOwnerAndNameResponse>
+     */
+    @WebMethod(operationName = "getCatsByOwnerAndName")
+    @RequestWrapper(localName = "getCatsByOwnerAndName", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByOwnerAndName")
+    @ResponseWrapper(localName = "getCatsByOwnerAndNameResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByOwnerAndNameResponse")
+    public Response<GetCatsByOwnerAndNameResponse> getCatsByOwnerAndNameAsync(
+        @WebParam(name = "name", targetNamespace = "")
+        String name,
+        @WebParam(name = "owner", targetNamespace = "")
+        String owner);
+
+    /**
+     * 
+     * @param owner
+     * @param name
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getCatsByOwnerAndName")
+    @RequestWrapper(localName = "getCatsByOwnerAndName", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByOwnerAndName")
+    @ResponseWrapper(localName = "getCatsByOwnerAndNameResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByOwnerAndNameResponse")
+    public Future<?> getCatsByOwnerAndNameAsync(
+        @WebParam(name = "name", targetNamespace = "")
+        String name,
+        @WebParam(name = "owner", targetNamespace = "")
+        String owner,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetCatsByOwnerAndNameResponse> asyncHandler);
+
+    /**
+     * 
+     * @param owner
+     * @param name
+     * @return
      *     returns java.util.List<itmo.ws.impl.Cat>
-     * @throws IllegalRequestParameterException
      * @throws PostgreSqlException
+     * @throws IllegalRequestParameterException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -184,9 +396,44 @@ public interface CatWebServiceImpl {
      * @param name
      * @param age
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.GetCatsByNameAndAgeResponse>
+     */
+    @WebMethod(operationName = "getCatsByNameAndAge")
+    @RequestWrapper(localName = "getCatsByNameAndAge", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByNameAndAge")
+    @ResponseWrapper(localName = "getCatsByNameAndAgeResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByNameAndAgeResponse")
+    public Response<GetCatsByNameAndAgeResponse> getCatsByNameAndAgeAsync(
+        @WebParam(name = "name", targetNamespace = "")
+        String name,
+        @WebParam(name = "age", targetNamespace = "")
+        int age);
+
+    /**
+     * 
+     * @param name
+     * @param asyncHandler
+     * @param age
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getCatsByNameAndAge")
+    @RequestWrapper(localName = "getCatsByNameAndAge", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByNameAndAge")
+    @ResponseWrapper(localName = "getCatsByNameAndAgeResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByNameAndAgeResponse")
+    public Future<?> getCatsByNameAndAgeAsync(
+        @WebParam(name = "name", targetNamespace = "")
+        String name,
+        @WebParam(name = "age", targetNamespace = "")
+        int age,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetCatsByNameAndAgeResponse> asyncHandler);
+
+    /**
+     * 
+     * @param name
+     * @param age
+     * @return
      *     returns java.util.List<itmo.ws.impl.Cat>
-     * @throws IllegalRequestParameterException
      * @throws PostgreSqlException
+     * @throws IllegalRequestParameterException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -209,9 +456,44 @@ public interface CatWebServiceImpl {
      * @param owner
      * @param breed
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.GetCatsByBreedAndOwnerResponse>
+     */
+    @WebMethod(operationName = "getCatsByBreedAndOwner")
+    @RequestWrapper(localName = "getCatsByBreedAndOwner", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByBreedAndOwner")
+    @ResponseWrapper(localName = "getCatsByBreedAndOwnerResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByBreedAndOwnerResponse")
+    public Response<GetCatsByBreedAndOwnerResponse> getCatsByBreedAndOwnerAsync(
+        @WebParam(name = "breed", targetNamespace = "")
+        String breed,
+        @WebParam(name = "owner", targetNamespace = "")
+        String owner);
+
+    /**
+     * 
+     * @param owner
+     * @param asyncHandler
+     * @param breed
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getCatsByBreedAndOwner")
+    @RequestWrapper(localName = "getCatsByBreedAndOwner", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByBreedAndOwner")
+    @ResponseWrapper(localName = "getCatsByBreedAndOwnerResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByBreedAndOwnerResponse")
+    public Future<?> getCatsByBreedAndOwnerAsync(
+        @WebParam(name = "breed", targetNamespace = "")
+        String breed,
+        @WebParam(name = "owner", targetNamespace = "")
+        String owner,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetCatsByBreedAndOwnerResponse> asyncHandler);
+
+    /**
+     * 
+     * @param owner
+     * @param breed
+     * @return
      *     returns java.util.List<itmo.ws.impl.Cat>
-     * @throws IllegalRequestParameterException
      * @throws PostgreSqlException
+     * @throws IllegalRequestParameterException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -235,9 +517,50 @@ public interface CatWebServiceImpl {
      * @param furColor
      * @param breed
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.GetCatsByFullDescriptionResponse>
+     */
+    @WebMethod(operationName = "getCatsByFullDescription")
+    @RequestWrapper(localName = "getCatsByFullDescription", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByFullDescription")
+    @ResponseWrapper(localName = "getCatsByFullDescriptionResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByFullDescriptionResponse")
+    public Response<GetCatsByFullDescriptionResponse> getCatsByFullDescriptionAsync(
+        @WebParam(name = "eyesColor", targetNamespace = "")
+        String eyesColor,
+        @WebParam(name = "furColor", targetNamespace = "")
+        String furColor,
+        @WebParam(name = "breed", targetNamespace = "")
+        String breed);
+
+    /**
+     * 
+     * @param eyesColor
+     * @param asyncHandler
+     * @param furColor
+     * @param breed
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getCatsByFullDescription")
+    @RequestWrapper(localName = "getCatsByFullDescription", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByFullDescription")
+    @ResponseWrapper(localName = "getCatsByFullDescriptionResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByFullDescriptionResponse")
+    public Future<?> getCatsByFullDescriptionAsync(
+        @WebParam(name = "eyesColor", targetNamespace = "")
+        String eyesColor,
+        @WebParam(name = "furColor", targetNamespace = "")
+        String furColor,
+        @WebParam(name = "breed", targetNamespace = "")
+        String breed,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetCatsByFullDescriptionResponse> asyncHandler);
+
+    /**
+     * 
+     * @param eyesColor
+     * @param furColor
+     * @param breed
+     * @return
      *     returns java.util.List<itmo.ws.impl.Cat>
-     * @throws IllegalRequestParameterException
      * @throws PostgreSqlException
+     * @throws IllegalRequestParameterException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -266,9 +589,68 @@ public interface CatWebServiceImpl {
      * @param age
      * @param breed
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.CreateCatResponse>
+     */
+    @WebMethod(operationName = "createCat")
+    @RequestWrapper(localName = "createCat", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.CreateCat")
+    @ResponseWrapper(localName = "createCatResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.CreateCatResponse")
+    public Response<CreateCatResponse> createCatAsync(
+        @WebParam(name = "name", targetNamespace = "")
+        String name,
+        @WebParam(name = "age", targetNamespace = "")
+        int age,
+        @WebParam(name = "eyesColor", targetNamespace = "")
+        String eyesColor,
+        @WebParam(name = "furColor", targetNamespace = "")
+        String furColor,
+        @WebParam(name = "breed", targetNamespace = "")
+        String breed,
+        @WebParam(name = "ownerName", targetNamespace = "")
+        String ownerName);
+
+    /**
+     * 
+     * @param ownerName
+     * @param eyesColor
+     * @param name
+     * @param asyncHandler
+     * @param furColor
+     * @param age
+     * @param breed
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "createCat")
+    @RequestWrapper(localName = "createCat", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.CreateCat")
+    @ResponseWrapper(localName = "createCatResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.CreateCatResponse")
+    public Future<?> createCatAsync(
+        @WebParam(name = "name", targetNamespace = "")
+        String name,
+        @WebParam(name = "age", targetNamespace = "")
+        int age,
+        @WebParam(name = "eyesColor", targetNamespace = "")
+        String eyesColor,
+        @WebParam(name = "furColor", targetNamespace = "")
+        String furColor,
+        @WebParam(name = "breed", targetNamespace = "")
+        String breed,
+        @WebParam(name = "ownerName", targetNamespace = "")
+        String ownerName,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<CreateCatResponse> asyncHandler);
+
+    /**
+     * 
+     * @param ownerName
+     * @param eyesColor
+     * @param name
+     * @param furColor
+     * @param age
+     * @param breed
+     * @return
      *     returns int
-     * @throws IllegalRequestParameterException
      * @throws PostgreSqlException
+     * @throws IllegalRequestParameterException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -298,6 +680,35 @@ public interface CatWebServiceImpl {
      * 
      * @param uid
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.DeleteCatResponse>
+     */
+    @WebMethod(operationName = "deleteCat")
+    @RequestWrapper(localName = "deleteCat", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.DeleteCat")
+    @ResponseWrapper(localName = "deleteCatResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.DeleteCatResponse")
+    public Response<DeleteCatResponse> deleteCatAsync(
+        @WebParam(name = "uid", targetNamespace = "")
+        int uid);
+
+    /**
+     * 
+     * @param uid
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "deleteCat")
+    @RequestWrapper(localName = "deleteCat", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.DeleteCat")
+    @ResponseWrapper(localName = "deleteCatResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.DeleteCatResponse")
+    public Future<?> deleteCatAsync(
+        @WebParam(name = "uid", targetNamespace = "")
+        int uid,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<DeleteCatResponse> asyncHandler);
+
+    /**
+     * 
+     * @param uid
+     * @return
      *     returns boolean
      * @throws PostgreSqlException
      */
@@ -319,9 +730,44 @@ public interface CatWebServiceImpl {
      * @param uid
      * @param name
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.UpdateCatNameResponse>
+     */
+    @WebMethod(operationName = "updateCatName")
+    @RequestWrapper(localName = "updateCatName", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatName")
+    @ResponseWrapper(localName = "updateCatNameResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatNameResponse")
+    public Response<UpdateCatNameResponse> updateCatNameAsync(
+        @WebParam(name = "uid", targetNamespace = "")
+        int uid,
+        @WebParam(name = "name", targetNamespace = "")
+        String name);
+
+    /**
+     * 
+     * @param uid
+     * @param name
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "updateCatName")
+    @RequestWrapper(localName = "updateCatName", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatName")
+    @ResponseWrapper(localName = "updateCatNameResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatNameResponse")
+    public Future<?> updateCatNameAsync(
+        @WebParam(name = "uid", targetNamespace = "")
+        int uid,
+        @WebParam(name = "name", targetNamespace = "")
+        String name,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<UpdateCatNameResponse> asyncHandler);
+
+    /**
+     * 
+     * @param uid
+     * @param name
+     * @return
      *     returns boolean
-     * @throws IllegalRequestParameterException
      * @throws PostgreSqlException
+     * @throws IllegalRequestParameterException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -345,9 +791,50 @@ public interface CatWebServiceImpl {
      * @param eyesColor
      * @param furColor
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.UpdateCatDescriptionResponse>
+     */
+    @WebMethod(operationName = "updateCatDescription")
+    @RequestWrapper(localName = "updateCatDescription", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatDescription")
+    @ResponseWrapper(localName = "updateCatDescriptionResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatDescriptionResponse")
+    public Response<UpdateCatDescriptionResponse> updateCatDescriptionAsync(
+        @WebParam(name = "uid", targetNamespace = "")
+        int uid,
+        @WebParam(name = "eyesColor", targetNamespace = "")
+        String eyesColor,
+        @WebParam(name = "furColor", targetNamespace = "")
+        String furColor);
+
+    /**
+     * 
+     * @param uid
+     * @param eyesColor
+     * @param asyncHandler
+     * @param furColor
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "updateCatDescription")
+    @RequestWrapper(localName = "updateCatDescription", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatDescription")
+    @ResponseWrapper(localName = "updateCatDescriptionResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatDescriptionResponse")
+    public Future<?> updateCatDescriptionAsync(
+        @WebParam(name = "uid", targetNamespace = "")
+        int uid,
+        @WebParam(name = "eyesColor", targetNamespace = "")
+        String eyesColor,
+        @WebParam(name = "furColor", targetNamespace = "")
+        String furColor,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<UpdateCatDescriptionResponse> asyncHandler);
+
+    /**
+     * 
+     * @param uid
+     * @param eyesColor
+     * @param furColor
+     * @return
      *     returns boolean
-     * @throws IllegalRequestParameterException
      * @throws PostgreSqlException
+     * @throws IllegalRequestParameterException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -372,9 +859,44 @@ public interface CatWebServiceImpl {
      * @param uid
      * @param breed
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.UpdateCatBreedResponse>
+     */
+    @WebMethod(operationName = "updateCatBreed")
+    @RequestWrapper(localName = "updateCatBreed", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatBreed")
+    @ResponseWrapper(localName = "updateCatBreedResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatBreedResponse")
+    public Response<UpdateCatBreedResponse> updateCatBreedAsync(
+        @WebParam(name = "uid", targetNamespace = "")
+        int uid,
+        @WebParam(name = "breed", targetNamespace = "")
+        String breed);
+
+    /**
+     * 
+     * @param uid
+     * @param asyncHandler
+     * @param breed
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "updateCatBreed")
+    @RequestWrapper(localName = "updateCatBreed", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatBreed")
+    @ResponseWrapper(localName = "updateCatBreedResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatBreedResponse")
+    public Future<?> updateCatBreedAsync(
+        @WebParam(name = "uid", targetNamespace = "")
+        int uid,
+        @WebParam(name = "breed", targetNamespace = "")
+        String breed,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<UpdateCatBreedResponse> asyncHandler);
+
+    /**
+     * 
+     * @param uid
+     * @param breed
+     * @return
      *     returns boolean
-     * @throws IllegalRequestParameterException
      * @throws PostgreSqlException
+     * @throws IllegalRequestParameterException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -397,9 +919,44 @@ public interface CatWebServiceImpl {
      * @param owner
      * @param uid
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.UpdateCatOwnerResponse>
+     */
+    @WebMethod(operationName = "updateCatOwner")
+    @RequestWrapper(localName = "updateCatOwner", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatOwner")
+    @ResponseWrapper(localName = "updateCatOwnerResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatOwnerResponse")
+    public Response<UpdateCatOwnerResponse> updateCatOwnerAsync(
+        @WebParam(name = "uid", targetNamespace = "")
+        int uid,
+        @WebParam(name = "owner", targetNamespace = "")
+        String owner);
+
+    /**
+     * 
+     * @param owner
+     * @param uid
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "updateCatOwner")
+    @RequestWrapper(localName = "updateCatOwner", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatOwner")
+    @ResponseWrapper(localName = "updateCatOwnerResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatOwnerResponse")
+    public Future<?> updateCatOwnerAsync(
+        @WebParam(name = "uid", targetNamespace = "")
+        int uid,
+        @WebParam(name = "owner", targetNamespace = "")
+        String owner,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<UpdateCatOwnerResponse> asyncHandler);
+
+    /**
+     * 
+     * @param owner
+     * @param uid
+     * @return
      *     returns boolean
-     * @throws IllegalRequestParameterException
      * @throws PostgreSqlException
+     * @throws IllegalRequestParameterException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -427,9 +984,74 @@ public interface CatWebServiceImpl {
      * @param age
      * @param breed
      * @return
+     *     returns javax.xml.ws.Response<itmo.ws.impl.UpdateCatResponse>
+     */
+    @WebMethod(operationName = "updateCat")
+    @RequestWrapper(localName = "updateCat", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCat")
+    @ResponseWrapper(localName = "updateCatResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatResponse")
+    public Response<UpdateCatResponse> updateCatAsync(
+        @WebParam(name = "uid", targetNamespace = "")
+        int uid,
+        @WebParam(name = "name", targetNamespace = "")
+        String name,
+        @WebParam(name = "age", targetNamespace = "")
+        int age,
+        @WebParam(name = "eyesColor", targetNamespace = "")
+        String eyesColor,
+        @WebParam(name = "furColor", targetNamespace = "")
+        String furColor,
+        @WebParam(name = "breed", targetNamespace = "")
+        String breed,
+        @WebParam(name = "ownerName", targetNamespace = "")
+        String ownerName);
+
+    /**
+     * 
+     * @param uid
+     * @param ownerName
+     * @param eyesColor
+     * @param name
+     * @param asyncHandler
+     * @param furColor
+     * @param age
+     * @param breed
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "updateCat")
+    @RequestWrapper(localName = "updateCat", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCat")
+    @ResponseWrapper(localName = "updateCatResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatResponse")
+    public Future<?> updateCatAsync(
+        @WebParam(name = "uid", targetNamespace = "")
+        int uid,
+        @WebParam(name = "name", targetNamespace = "")
+        String name,
+        @WebParam(name = "age", targetNamespace = "")
+        int age,
+        @WebParam(name = "eyesColor", targetNamespace = "")
+        String eyesColor,
+        @WebParam(name = "furColor", targetNamespace = "")
+        String furColor,
+        @WebParam(name = "breed", targetNamespace = "")
+        String breed,
+        @WebParam(name = "ownerName", targetNamespace = "")
+        String ownerName,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<UpdateCatResponse> asyncHandler);
+
+    /**
+     * 
+     * @param uid
+     * @param ownerName
+     * @param eyesColor
+     * @param name
+     * @param furColor
+     * @param age
+     * @param breed
+     * @return
      *     returns boolean
-     * @throws IllegalRequestParameterException
      * @throws PostgreSqlException
+     * @throws IllegalRequestParameterException
      */
     @WebMethod
     @WebResult(targetNamespace = "")

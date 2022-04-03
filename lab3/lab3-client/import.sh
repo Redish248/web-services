@@ -1,0 +1,1 @@
+wsimport -s . http://localhost:8080/CatService?wsdl -b async.xml
