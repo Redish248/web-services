@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'war'
 }
 
 group 'itmo.rs.lab4'
@@ -11,39 +11,18 @@ repositories {
 }
 
 dependencies {
-    implementation "com.sun.jersey:jersey-server:${jerseyServer}"
+    implementation "com.sun.jersey:jersey-server:${jerseyVersion}"
     implementation "com.sun.jersey:jersey-servlet:${jerseyVersion}"
     implementation "com.sun.jersey:jersey-grizzly2:${jerseyVersion}"
     implementation "com.sun.jersey:jersey-json:${jerseyVersion}"
+    implementation "javax:javaee-web-api:${apiVersion}"
 
     implementation "org.postgresql:postgresql:${postgresVersion}"
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 }
 
-test {
-    useJUnitPlatform()
+war {
+    enabled=true
+    archiveName 'cat-war-rest.war'
 }
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(8)
-    }
-}
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
-
-shadowJar {
-    manifest {
-        attributes 'Main-Class':'itmo.rs.Main'
-    }
-    archiveName = 'cat-war.jar'
-}
-
-jar {
-    enabled = false
-}
-
-tasks.build.dependsOn shadowJar

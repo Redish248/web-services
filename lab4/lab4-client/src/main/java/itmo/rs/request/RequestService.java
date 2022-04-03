@@ -10,7 +10,10 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 public class RequestService {
-    private static final String URL = "http://localhost:8080/rest/cats";
+    //for standalone
+    //private static final String URL = "http://localhost:8080/rest/cats";
+    //for J2EE
+    private static final String URL = "http://localhost:8080/cat-war-rest/rest/cats";
 
     public static List<Cat> getAllCats(Client client) {
         WebResource webResource = client.resource(URL + "/getCats");
