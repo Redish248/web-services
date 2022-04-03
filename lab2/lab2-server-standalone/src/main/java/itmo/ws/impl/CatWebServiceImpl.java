@@ -4,6 +4,8 @@ import itmo.ws.dao.CatDao;
 import itmo.ws.model.Cat;
 import itmo.ws.service.CatService;
 
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -137,5 +139,10 @@ public class CatWebServiceImpl implements CatService {
                          @WebParam(name = "breed") @XmlElement(required=true) String breed,
                          @WebParam(name = "ownerName") @XmlElement(required=true) String ownerName) {
         return catDao.updateCat(uid, name, age, eyesColor, furColor, breed, ownerName);
+    }
+
+    @WebMethod(operationName = "getFileAsAttachment")
+    public DataHandler getFileAsAttachment() {
+        return(new DataHandler(new FileDataSource("img.png")));
     }
 }

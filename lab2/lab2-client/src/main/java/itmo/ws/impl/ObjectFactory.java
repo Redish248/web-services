@@ -32,6 +32,7 @@ public class ObjectFactory {
     private final static QName _GetCatsByNameResponse_QNAME = new QName("http://impl.ws.itmo/", "getCatsByNameResponse");
     private final static QName _CreateCat_QNAME = new QName("http://impl.ws.itmo/", "createCat");
     private final static QName _UpdateCat_QNAME = new QName("http://impl.ws.itmo/", "updateCat");
+    private final static QName _GetFileAsAttachment_QNAME = new QName("http://impl.ws.itmo/", "getFileAsAttachment");
     private final static QName _UpdateCatBreed_QNAME = new QName("http://impl.ws.itmo/", "updateCatBreed");
     private final static QName _GetCatsByDescriptionResponse_QNAME = new QName("http://impl.ws.itmo/", "getCatsByDescriptionResponse");
     private final static QName _UpdateCatNameResponse_QNAME = new QName("http://impl.ws.itmo/", "updateCatNameResponse");
@@ -41,6 +42,7 @@ public class ObjectFactory {
     private final static QName _UpdateCatOwnerResponse_QNAME = new QName("http://impl.ws.itmo/", "updateCatOwnerResponse");
     private final static QName _GetCatsByName_QNAME = new QName("http://impl.ws.itmo/", "getCatsByName");
     private final static QName _GetCatByUid_QNAME = new QName("http://impl.ws.itmo/", "getCatByUid");
+    private final static QName _GetFileAsAttachmentResponse_QNAME = new QName("http://impl.ws.itmo/", "getFileAsAttachmentResponse");
     private final static QName _GetCatsByBreedResponse_QNAME = new QName("http://impl.ws.itmo/", "getCatsByBreedResponse");
     private final static QName _DeleteCat_QNAME = new QName("http://impl.ws.itmo/", "deleteCat");
     private final static QName _UpdateCatDescriptionResponse_QNAME = new QName("http://impl.ws.itmo/", "updateCatDescriptionResponse");
@@ -112,6 +114,14 @@ public class ObjectFactory {
      */
     public GetCatByUid createGetCatByUid() {
         return new GetCatByUid();
+    }
+
+    /**
+     * Create an instance of {@link GetFileAsAttachmentResponse }
+     * 
+     */
+    public GetFileAsAttachmentResponse createGetFileAsAttachmentResponse() {
+        return new GetFileAsAttachmentResponse();
     }
 
     /**
@@ -198,8 +208,8 @@ public class ObjectFactory {
      * Create an instance of {@link UpdateCat }
      * 
      */
-    public UpdateCat createUpdateCat() {
-        return new UpdateCat();
+    public GetFileAsAttachment createGetFileAsAttachment() {
+        return new GetFileAsAttachment();
     }
 
     /**
@@ -419,6 +429,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetFileAsAttachment }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://impl.ws.itmo/", name = "getFileAsAttachment")
+    public JAXBElement<GetFileAsAttachment> createGetFileAsAttachment(GetFileAsAttachment value) {
+        return new JAXBElement<GetFileAsAttachment>(_GetFileAsAttachment_QNAME, GetFileAsAttachment.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link UpdateCatBreed }{@code >}}
      * 
      */
@@ -497,6 +516,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://impl.ws.itmo/", name = "getCatByUid")
     public JAXBElement<GetCatByUid> createGetCatByUid(GetCatByUid value) {
         return new JAXBElement<GetCatByUid>(_GetCatByUid_QNAME, GetCatByUid.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetFileAsAttachmentResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://impl.ws.itmo/", name = "getFileAsAttachmentResponse")
+    public JAXBElement<GetFileAsAttachmentResponse> createGetFileAsAttachmentResponse(GetFileAsAttachmentResponse value) {
+        return new JAXBElement<GetFileAsAttachmentResponse>(_GetFileAsAttachmentResponse_QNAME, GetFileAsAttachmentResponse.class, null, value);
     }
 
     /**

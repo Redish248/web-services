@@ -3,13 +3,15 @@ package itmo.ws;
 import itmo.ws.impl.Cat;
 import itmo.ws.impl.CatService;
 
-import java.net.MalformedURLException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URL;
 import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main(String[] args) throws IOException {
         URL url = new URL("http://localhost:8080/CatService?wsdl");
         CatService catService = new CatService(url);
 
@@ -88,6 +90,13 @@ public class Main {
         catService.getCatWebServiceImplPort().deleteCat(uid);
         System.out.println("Cat with id " + uid + " removed");
         System.out.println();
+
+        System.out.println("==========GET FILE=============");
+        byte[] image = catService.getCatWebServiceImplPort().getFileAsAttachment();
+        OutputStream out = new FileOutputStream("test.jpg");
+        out.write(image);
+        out.flush();
+        out.close();
     }
 
     private static void printCats(List<Cat> cats) {

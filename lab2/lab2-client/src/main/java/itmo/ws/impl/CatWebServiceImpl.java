@@ -1,7 +1,6 @@
 
 package itmo.ws.impl;
 
-import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -10,6 +9,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
+import java.util.List;
 
 
 /**
@@ -35,7 +35,7 @@ public interface CatWebServiceImpl {
     @RequestWrapper(localName = "getCats", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCats")
     @ResponseWrapper(localName = "getCatsResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsResponse")
     @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/getCatsRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/getCatsResponse")
-    public List<Cat> getCats();
+    public List<itmo.ws.impl.Cat> getCats();
 
     /**
      * 
@@ -48,7 +48,7 @@ public interface CatWebServiceImpl {
     @RequestWrapper(localName = "getCatsByName", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByName")
     @ResponseWrapper(localName = "getCatsByNameResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByNameResponse")
     @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/getCatsByNameRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/getCatsByNameResponse")
-    public List<Cat> getCatsByName(
+    public List<itmo.ws.impl.Cat> getCatsByName(
         @WebParam(name = "name", targetNamespace = "")
         String name);
 
@@ -63,7 +63,7 @@ public interface CatWebServiceImpl {
     @RequestWrapper(localName = "getCatByUid", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatByUid")
     @ResponseWrapper(localName = "getCatByUidResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatByUidResponse")
     @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/getCatByUidRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/getCatByUidResponse")
-    public Cat getCatByUid(
+    public itmo.ws.impl.Cat getCatByUid(
         @WebParam(name = "uid", targetNamespace = "")
         int uid);
 
@@ -79,7 +79,7 @@ public interface CatWebServiceImpl {
     @RequestWrapper(localName = "getCatsByDescription", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByDescription")
     @ResponseWrapper(localName = "getCatsByDescriptionResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByDescriptionResponse")
     @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/getCatsByDescriptionRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/getCatsByDescriptionResponse")
-    public List<Cat> getCatsByDescription(
+    public List<itmo.ws.impl.Cat> getCatsByDescription(
         @WebParam(name = "eyesColor", targetNamespace = "")
         String eyesColor,
         @WebParam(name = "furColor", targetNamespace = "")
@@ -96,7 +96,7 @@ public interface CatWebServiceImpl {
     @RequestWrapper(localName = "getCatsByBreed", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByBreed")
     @ResponseWrapper(localName = "getCatsByBreedResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByBreedResponse")
     @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/getCatsByBreedRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/getCatsByBreedResponse")
-    public List<Cat> getCatsByBreed(
+    public List<itmo.ws.impl.Cat> getCatsByBreed(
         @WebParam(name = "breed", targetNamespace = "")
         String breed);
 
@@ -111,7 +111,7 @@ public interface CatWebServiceImpl {
     @RequestWrapper(localName = "getCatsByOwner", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByOwner")
     @ResponseWrapper(localName = "getCatsByOwnerResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByOwnerResponse")
     @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/getCatsByOwnerRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/getCatsByOwnerResponse")
-    public List<Cat> getCatsByOwner(
+    public List<itmo.ws.impl.Cat> getCatsByOwner(
         @WebParam(name = "owner", targetNamespace = "")
         String owner);
 
@@ -127,7 +127,7 @@ public interface CatWebServiceImpl {
     @RequestWrapper(localName = "getCatsByOwnerAndName", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByOwnerAndName")
     @ResponseWrapper(localName = "getCatsByOwnerAndNameResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByOwnerAndNameResponse")
     @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/getCatsByOwnerAndNameRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/getCatsByOwnerAndNameResponse")
-    public List<Cat> getCatsByOwnerAndName(
+    public List<itmo.ws.impl.Cat> getCatsByOwnerAndName(
         @WebParam(name = "name", targetNamespace = "")
         String name,
         @WebParam(name = "owner", targetNamespace = "")
@@ -145,7 +145,7 @@ public interface CatWebServiceImpl {
     @RequestWrapper(localName = "getCatsByNameAndAge", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByNameAndAge")
     @ResponseWrapper(localName = "getCatsByNameAndAgeResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByNameAndAgeResponse")
     @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/getCatsByNameAndAgeRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/getCatsByNameAndAgeResponse")
-    public List<Cat> getCatsByNameAndAge(
+    public List<itmo.ws.impl.Cat> getCatsByNameAndAge(
         @WebParam(name = "name", targetNamespace = "")
         String name,
         @WebParam(name = "age", targetNamespace = "")
@@ -163,7 +163,7 @@ public interface CatWebServiceImpl {
     @RequestWrapper(localName = "getCatsByBreedAndOwner", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByBreedAndOwner")
     @ResponseWrapper(localName = "getCatsByBreedAndOwnerResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetCatsByBreedAndOwnerResponse")
     @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/getCatsByBreedAndOwnerRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/getCatsByBreedAndOwnerResponse")
-    public List<Cat> getCatsByBreedAndOwner(
+    public List<itmo.ws.impl.Cat> getCatsByBreedAndOwner(
         @WebParam(name = "breed", targetNamespace = "")
         String breed,
         @WebParam(name = "owner", targetNamespace = "")
@@ -342,5 +342,17 @@ public interface CatWebServiceImpl {
         String breed,
         @WebParam(name = "ownerName", targetNamespace = "")
         String ownerName);
+
+    /**
+     * 
+     * @return
+     *     returns byte[]
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getFileAsAttachment", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetFileAsAttachment")
+    @ResponseWrapper(localName = "getFileAsAttachmentResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.GetFileAsAttachmentResponse")
+    @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/getFileAsAttachmentRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/getFileAsAttachmentResponse")
+    public byte[] getFileAsAttachment();
 
 }
