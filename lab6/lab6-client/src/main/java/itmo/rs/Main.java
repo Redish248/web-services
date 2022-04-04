@@ -129,93 +129,41 @@ public class Main {
             System.out.println();
         }
 
-        int uid = -1;
-        System.out.println("==========CREATE CAT=============");
         try {
-            uid = RequestService.createCat(client, "Kitty", 2, "green", "gray stripped", "none", "Ira");
+            System.out.println("==========CREATE CAT=============");
+            int uid = RequestService.createCat(client, "Kitty", 2, "green", "gray stripped", "none", "Ira");
             System.out.println(uid);
             System.out.println();
-        } catch (EmptyInputParamException e) {
-            System.out.println("SOME REQUEST PARAM IS EMPTY OR NULL");
-            System.out.println(e.getMessage());
-            System.out.println();
-        } catch (SQLException e) {
-            System.out.println("SQL exception appeared " + e.getMessage());
-            System.out.println();
-        }
 
-        System.out.println("==========UPDATE CAT NAME=============");
-        try {
+            System.out.println("==========UPDATE CAT NAME=============");
+
             RequestService.updateCatName(client, uid, "Kit");
             System.out.println("Cat with id " + uid + " updated");
             System.out.println();
-        } catch (EmptyInputParamException e) {
-            System.out.println("SOME REQUEST PARAM IS EMPTY OR NULL");
-            System.out.println(e.getMessage());
-            System.out.println();
-        } catch (SQLException e) {
-            System.out.println("SQL exception appeared " + e.getMessage());
-            System.out.println();
-        }
 
-        System.out.println("==========UPDATE CAT DESCRIPTION=============");
-        try {
+            System.out.println("==========UPDATE CAT DESCRIPTION=============");
+
             RequestService.updateCatDescription(client, uid, "yellow", "black and white");
             System.out.println("Cat with id " + uid + " updated");
             System.out.println();
-        } catch (EmptyInputParamException e) {
-            System.out.println("SOME REQUEST PARAM IS EMPTY OR NULL");
-            System.out.println(e.getMessage());
-            System.out.println();
-        } catch (SQLException e) {
-            System.out.println("SQL exception appeared " + e.getMessage());
-            System.out.println();
-        }
 
-        System.out.println("==========UPDATE CAT BREED=============");
-        try {
+            System.out.println("==========UPDATE CAT BREED=============");
+
             RequestService.updateCatBreed(client, uid, "Maine coon");
             System.out.println("Cat with id " + uid + " updated");
             System.out.println();
-        } catch (EmptyInputParamException e) {
-            System.out.println("SOME REQUEST PARAM IS EMPTY OR NULL");
-            System.out.println(e.getMessage());
-            System.out.println();
-        } catch (SQLException e) {
-            System.out.println("SQL exception appeared " + e.getMessage());
-            System.out.println();
-        }
 
-        System.out.println("==========UPDATE CAT OWNER=============");
-        try {
+            System.out.println("==========UPDATE CAT OWNER=============");
             RequestService.updateCatOwner(client, uid, "Irina");
             System.out.println("Cat with id " + uid + " updated");
             System.out.println();
-        } catch (EmptyInputParamException e) {
-            System.out.println("SOME REQUEST PARAM IS EMPTY OR NULL");
-            System.out.println(e.getMessage());
-            System.out.println();
-        } catch (SQLException e) {
-            System.out.println("SQL exception appeared " + e.getMessage());
-            System.out.println();
-        }
 
-        System.out.println("==========UPDATE CAT=============");
-        try {
+            System.out.println("==========UPDATE CAT=============");
             RequestService.updateCat(client, uid, "Kisa", 3, "yellow", "black", "none", "Irina");
             System.out.println("Cat with id " + uid + " updated");
             System.out.println();
-        } catch (EmptyInputParamException e) {
-            System.out.println("SOME REQUEST PARAM IS EMPTY OR NULL");
-            System.out.println(e.getMessage());
-            System.out.println();
-        } catch (SQLException e) {
-            System.out.println("SQL exception appeared " + e.getMessage());
-            System.out.println();
-        }
 
-        System.out.println("==========DELETE CAT=============");
-        try {
+            System.out.println("==========DELETE CAT=============");
             RequestService.deleteCat(client, uid);
             System.out.println("Cat with id " + uid + " removed");
             System.out.println();
