@@ -57,3 +57,13 @@
 /lab5/lab5-client/.gradle/
 /lab5/lab5-client/build/
 /lab5/lab5-client/*.iml
+
+/lab6/lab6-server-standalone/.idea/
+/lab6/lab6-server-standalone/.gradle/
+/lab6/lab6-server-standalone/build/
+/lab6/lab6-server-standalone/*.iml
+
+/lab6/lab6-client/.idea/
+/lab6/lab6-client/.gradle/
+/lab6/lab6-client/build/
+/lab6/lab6-client/*.iml
