@@ -32,9 +32,7 @@ public class CatResource implements CatService {
     @Path("/getCatsByName")
     @Override
     public List<Cat> getCatsByName(@QueryParam("name") String name) throws PostgreSqlException, IllegalRequestParameterException {
-        if (name == null || name.trim().isEmpty()) {
-            throw IllegalRequestParameterException.DEFAULT_INSTANCE;
-        }
+        validateInputParam(name);
         return catDao.getCatsByName(name);
     }
 
@@ -50,8 +48,8 @@ public class CatResource implements CatService {
     @Override
     public List<Cat> getCatsByDescription(@QueryParam("eyesColor") String eyesColor,
                                           @QueryParam("furColor") String furColor) throws PostgreSqlException, IllegalRequestParameterException {
-        validateInputParam(eyesColor, "eyesColor");
-        validateInputParam(furColor, "furColor");
+        validateInputParam(eyesColor);
+        validateInputParam(furColor);
         return catDao.getCatsByDescription(eyesColor, furColor);
     }
 
@@ -59,7 +57,7 @@ public class CatResource implements CatService {
     @Path("/getCatsByBreed")
     @Override
     public List<Cat> getCatsByBreed(@QueryParam("breed") String breed) throws PostgreSqlException, IllegalRequestParameterException {
-        validateInputParam(breed, "breed");
+        validateInputParam(breed);
         return catDao.getCatsByBreed(breed);
     }
 
@@ -67,7 +65,7 @@ public class CatResource implements CatService {
     @Path("/getCatsByOwner")
     @Override
     public List<Cat> getCatsByOwner(@QueryParam("owner") String owner) throws PostgreSqlException, IllegalRequestParameterException {
-        validateInputParam(owner, "owner");
+        validateInputParam(owner);
         return catDao.getCatsByOwner(owner);
     }
 
@@ -76,8 +74,8 @@ public class CatResource implements CatService {
     @Override
     public List<Cat> getCatsByOwnerAndName(@QueryParam("name") String name,
                                            @QueryParam("owner") String owner) throws PostgreSqlException, IllegalRequestParameterException {
-        validateInputParam(name, "name");
-        validateInputParam(owner, "owner");
+        validateInputParam(name);
+        validateInputParam(owner);
         return catDao.getCatsByOwnerAndName(name, owner);
     }
 
@@ -86,7 +84,7 @@ public class CatResource implements CatService {
     @Override
     public List<Cat> getCatsByNameAndAge(@QueryParam("name") String name,
                                          @QueryParam("age") int age) throws PostgreSqlException, IllegalRequestParameterException {
-        validateInputParam(name, "name");
+        validateInputParam(name);
         return catDao.getCatsByNameAndAge(name, age);
     }
 
@@ -95,8 +93,8 @@ public class CatResource implements CatService {
     @Override
     public List<Cat> getCatsByBreedAndOwner(@QueryParam("breed") String breed,
                                             @QueryParam("owner") String owner) throws PostgreSqlException, IllegalRequestParameterException {
-        validateInputParam(breed, "breed");
-        validateInputParam(owner, "owner");
+        validateInputParam(breed);
+        validateInputParam(owner);
         return catDao.getCatsByBreedAndOwner(breed, owner);
     }
 
@@ -106,9 +104,9 @@ public class CatResource implements CatService {
     public List<Cat> getCatsByFullDescription(@QueryParam("eyesColor") String eyesColor,
                                               @QueryParam("furColor") String furColor,
                                               @QueryParam("breed") String breed) throws PostgreSqlException, IllegalRequestParameterException {
-        validateInputParam(eyesColor, "eyesColor");
-        validateInputParam(furColor, "furColor");
-        validateInputParam(breed, "breed");
+        validateInputParam(eyesColor);
+        validateInputParam(furColor);
+        validateInputParam(breed);
         return catDao.getCatsByFullDescription(eyesColor, furColor, breed);
     }
 
@@ -121,11 +119,11 @@ public class CatResource implements CatService {
                          @QueryParam("furColor") String furColor,
                          @QueryParam("breed") String breed,
                          @QueryParam("owner") String ownerName) throws PostgreSqlException, IllegalRequestParameterException {
-        validateInputParam(name, "name");
-        validateInputParam(eyesColor, "eyesColor");
-        validateInputParam(furColor, "furColor");
-        validateInputParam(breed, "breed");
-        validateInputParam(ownerName, "ownerName");
+        validateInputParam(name);
+        validateInputParam(eyesColor);
+        validateInputParam(furColor);
+        validateInputParam(breed);
+        validateInputParam(ownerName);
         return catDao.createCat(name, age, eyesColor, furColor, breed, ownerName);
     }
 
@@ -141,7 +139,7 @@ public class CatResource implements CatService {
     @Override
     public boolean updateCatName(@QueryParam("uid") int uid,
                                  @QueryParam("name") String name) throws PostgreSqlException, IllegalRequestParameterException {
-        validateInputParam(name, "name");
+        validateInputParam(name);
         return catDao.updateCatName(uid, name);
     }
 
@@ -151,8 +149,8 @@ public class CatResource implements CatService {
     public boolean updateCatDescription(@QueryParam("uid") int uid,
                                         @QueryParam("eyesColor") String eyesColor,
                                         @QueryParam("furColor") String furColor) throws PostgreSqlException, IllegalRequestParameterException {
-        validateInputParam(eyesColor, "eyesColor");
-        validateInputParam(furColor, "furColor");
+        validateInputParam(eyesColor);
+        validateInputParam(furColor);
         return catDao.updateCatDescription(uid, eyesColor, furColor);
     }
 
@@ -161,7 +159,7 @@ public class CatResource implements CatService {
     @Override
     public boolean updateCatBreed(@QueryParam("uid") int uid,
                                   @QueryParam("breed") String breed) throws PostgreSqlException, IllegalRequestParameterException {
-        validateInputParam(breed, "breed");
+        validateInputParam(breed);
         return catDao.updateCatBreed(uid, breed);
     }
 
@@ -170,7 +168,7 @@ public class CatResource implements CatService {
     @Override
     public boolean updateCatOwner(@QueryParam("uid") int uid,
                                   @QueryParam("owner") String owner) throws PostgreSqlException, IllegalRequestParameterException {
-        validateInputParam(owner, "owner");
+        validateInputParam(owner);
         return catDao.updateCatOwner(uid, owner);
     }
 
@@ -184,15 +182,15 @@ public class CatResource implements CatService {
                              @QueryParam("furColor") String furColor,
                              @QueryParam("breed") String breed,
                              @QueryParam("owner") String ownerName) throws PostgreSqlException, IllegalRequestParameterException {
-        validateInputParam(name, "name");
-        validateInputParam(eyesColor, "eyesColor");
-        validateInputParam(furColor, "furColor");
-        validateInputParam(breed, "breed");
-        validateInputParam(ownerName, "ownerName");
+        validateInputParam(name);
+        validateInputParam(eyesColor);
+        validateInputParam(furColor);
+        validateInputParam(breed);
+        validateInputParam(ownerName);
         return catDao.updateCat(uid, name, age, eyesColor, furColor, breed, ownerName);
     }
 
-    private void validateInputParam(String value, String name) throws IllegalRequestParameterException {
+    private void validateInputParam(String value) throws IllegalRequestParameterException {
         if (value == null || value.trim().isEmpty()) {
             throw IllegalRequestParameterException.DEFAULT_INSTANCE;
         }

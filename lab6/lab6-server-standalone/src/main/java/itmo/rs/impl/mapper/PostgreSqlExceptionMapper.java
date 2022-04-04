@@ -1,4 +1,4 @@
-package itmo.rs.impl;
+package itmo.rs.impl.mapper;
 
 import itmo.rs.exception.PostgreSqlException;
 
