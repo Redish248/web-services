@@ -27,10 +27,6 @@ public class Main {
             threads[i].start();
         }
 
-   /*     for(int i = 0; i < 15; i++) {
-            threads[i].join();
-        }*/
-
         /*System.out.println("==========GET ALL CATS BY NAME=============");
         printCats(RequestService.getCatsByName(client, "Vasya"));
 
