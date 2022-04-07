@@ -1,17 +1,23 @@
 package itmo.rs.impl;
 
 import itmo.rs.dao.CatDao;
+import itmo.rs.exception.AuthException;
 import itmo.rs.model.Cat;
 import itmo.rs.service.CatService;
 
+import javax.naming.AuthenticationException;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.List;
 
 @Path("/cats")
@@ -103,14 +109,18 @@ public class CatResource implements CatService {
                          @QueryParam("eyesColor") String eyesColor,
                          @QueryParam("furColor") String furColor,
                          @QueryParam("breed") String breed,
-                         @QueryParam("owner") String ownerName) {
+                         @QueryParam("owner") String ownerName,
+                         @HeaderParam("Authorization") String authString) throws UnsupportedEncodingException, AuthException {
+        isUserAuthenticated(authString);
         return catDao.createCat(name, age, eyesColor, furColor, breed, ownerName);
     }
 
     @DELETE
     @Path("/deleteCat")
     @Override
-    public Boolean deleteCat(@QueryParam("uid") int uid) {
+    public Boolean deleteCat(@QueryParam("uid") int uid,
+                             @HeaderParam("Authorization") String authString) throws UnsupportedEncodingException, AuthException {
+        isUserAuthenticated(authString);
         return catDao.deleteCat(uid);
     }
 
@@ -118,7 +128,9 @@ public class CatResource implements CatService {
     @Path("/updateCatName")
     @Override
     public Boolean updateCatName(@QueryParam("uid") int uid,
-                                 @QueryParam("name") String name) {
+                                 @QueryParam("name") String name,
+                                 @HeaderParam("Authorization") String authString) throws UnsupportedEncodingException, AuthException {
+        isUserAuthenticated(authString);
         return catDao.updateCatName(uid, name);
     }
 
@@ -127,7 +139,9 @@ public class CatResource implements CatService {
     @Override
     public Boolean updateCatDescription(@QueryParam("uid") int uid,
                                         @QueryParam("eyesColor") String eyesColor,
-                                        @QueryParam("furColor") String furColor) {
+                                        @QueryParam("furColor") String furColor,
+                                        @HeaderParam("Authorization") String authString) throws UnsupportedEncodingException, AuthException {
+        isUserAuthenticated(authString);
         return catDao.updateCatDescription(uid, eyesColor, furColor);
     }
 
@@ -135,7 +149,9 @@ public class CatResource implements CatService {
     @Path("/updateCatBreed")
     @Override
     public Boolean updateCatBreed(@QueryParam("uid") int uid,
-                                  @QueryParam("breed") String breed) {
+                                  @QueryParam("breed") String breed,
+                                  @HeaderParam("Authorization") String authString) throws UnsupportedEncodingException, AuthException {
+        isUserAuthenticated(authString);
         return catDao.updateCatBreed(uid, breed);
     }
 
@@ -143,7 +159,9 @@ public class CatResource implements CatService {
     @Path("/updateCatOwner")
     @Override
     public Boolean updateCatOwner(@QueryParam("uid") int uid,
-                                  @QueryParam("owner") String owner) {
+                                  @QueryParam("owner") String owner,
+                                  @HeaderParam("Authorization") String authString) throws UnsupportedEncodingException, AuthException {
+        isUserAuthenticated(authString);
         return catDao.updateCatOwner(uid, owner);
     }
 
@@ -156,7 +174,21 @@ public class CatResource implements CatService {
                              @QueryParam("eyesColor") String eyesColor,
                              @QueryParam("furColor") String furColor,
                              @QueryParam("breed") String breed,
-                             @QueryParam("owner") String ownerName) {
+                             @QueryParam("owner") String ownerName,
+                             @HeaderParam("Authorization") String authString) throws UnsupportedEncodingException, AuthException {
+        isUserAuthenticated(authString);
         return catDao.updateCat(uid, name, age, eyesColor, furColor, breed, ownerName);
+    }
+
+    private void isUserAuthenticated(String authString) throws UnsupportedEncodingException, AuthException {
+
+        String[] tokens = (new String(Base64.getDecoder().decode(authString.split(" ")[1]), "UTF-8")).split(":");
+        final String username = tokens[0];
+        final String password = tokens[1];
+
+        if (!username.equals("redish") || !password.equals("redish")) {
+            throw AuthException.DEFAULT_INSTANCE;
+        }
+
     }
 }

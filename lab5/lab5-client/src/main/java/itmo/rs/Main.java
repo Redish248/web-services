@@ -4,6 +4,7 @@ import com.sun.jersey.api.client.Client;
 import itmo.rs.model.Cat;
 import itmo.rs.request.RequestService;
 
+import javax.naming.AuthenticationException;
 import java.util.List;
 
 public class Main {
@@ -41,40 +42,44 @@ public class Main {
         System.out.println("==========GET ALL CATS BY FULL DESCRIPTION=============");
         printCats(RequestService.getCatsByFullDescription(client, "green", "gray stripped", "none"));
 
-        System.out.println("==========CREATE CAT=============");
-        int uid = RequestService.createCat(client, "Kitty", 2, "green", "gray stripped", "none", "Ira");
-        System.out.println(uid);
-        System.out.println();
+        try {
+            System.out.println("==========CREATE CAT=============");
+            int uid = RequestService.createCat(client, "Kitty", 2, "green", "gray stripped", "none", "Ira");
+            System.out.println(uid);
+            System.out.println();
 
-        System.out.println("==========UPDATE CAT NAME=============");
-        RequestService.updateCatName(client, uid, "Kit");
-        System.out.println("Cat with id " + uid + " updated");
-        System.out.println();
+            System.out.println("==========UPDATE CAT NAME=============");
+            RequestService.updateCatName(client, uid, "Kit");
+            System.out.println("Cat with id " + uid + " updated");
+            System.out.println();
 
-        System.out.println("==========UPDATE CAT DESCRIPTION=============");
-        RequestService.updateCatDescription(client, uid, "yellow", "black and white");
-        System.out.println("Cat with id " + uid + " updated");
-        System.out.println();
+            System.out.println("==========UPDATE CAT DESCRIPTION=============");
+            RequestService.updateCatDescription(client, uid, "yellow", "black and white");
+            System.out.println("Cat with id " + uid + " updated");
+            System.out.println();
 
-        System.out.println("==========UPDATE CAT BREED=============");
-        RequestService.updateCatBreed(client, uid, "Maine coon");
-        System.out.println("Cat with id " + uid + " updated");
-        System.out.println();
+            System.out.println("==========UPDATE CAT BREED=============");
+            RequestService.updateCatBreed(client, uid, "Maine coon");
+            System.out.println("Cat with id " + uid + " updated");
+            System.out.println();
 
-        System.out.println("==========UPDATE CAT OWNER=============");
-        RequestService.updateCatOwner(client, uid, "Irina");
-        System.out.println("Cat with id " + uid + " updated");
-        System.out.println();
+            System.out.println("==========UPDATE CAT OWNER=============");
+            RequestService.updateCatOwner(client, uid, "Irina");
+            System.out.println("Cat with id " + uid + " updated");
+            System.out.println();
 
-        System.out.println("==========UPDATE CAT=============");
-        RequestService.updateCat(client, uid, "Kisa", 3, "yellow", "black", "none", "Irina");
-        System.out.println("Cat with id " + uid + " updated");
-        System.out.println();
+            System.out.println("==========UPDATE CAT=============");
+            RequestService.updateCat(client, uid, "Kisa", 3, "yellow", "black", "none", "Irina");
+            System.out.println("Cat with id " + uid + " updated");
+            System.out.println();
 
-        System.out.println("==========DELETE CAT=============");
-        RequestService.deleteCat(client, uid);
-        System.out.println("Cat with id " + uid + " removed");
-        System.out.println();
+            System.out.println("==========DELETE CAT=============");
+            RequestService.deleteCat(client, uid);
+            System.out.println("Cat with id " + uid + " removed");
+            System.out.println();
+        } catch (AuthenticationException e) {
+            System.out.println("User unknown");
+        }
     }
 
     private static void printCats(List<Cat> cats) {

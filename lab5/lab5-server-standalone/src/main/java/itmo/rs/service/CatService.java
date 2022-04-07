@@ -1,7 +1,9 @@
 package itmo.rs.service;
 
+import itmo.rs.exception.AuthException;
 import itmo.rs.model.Cat;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public interface CatService {
@@ -26,17 +28,17 @@ public interface CatService {
 
     List<Cat> getCatsByFullDescription(String eyesColor, String furColor, String breed);
 
-    int createCat(String name, int age, String eyesColor, String furColor, String breed, String ownerName);
+    int createCat(String name, int age, String eyesColor, String furColor, String breed, String ownerName, String authString) throws UnsupportedEncodingException, AuthException;
 
-    Boolean deleteCat(int uid);
+    Boolean deleteCat(int uid, String authString) throws UnsupportedEncodingException, AuthException;
 
-    Boolean updateCatName(int uid, String name);
+    Boolean updateCatName(int uid, String name, String authString) throws UnsupportedEncodingException, AuthException;
 
-    Boolean updateCatDescription(int uid, String eyesColor, String furColor);
+    Boolean updateCatDescription(int uid, String eyesColor, String furColor, String authString) throws UnsupportedEncodingException, AuthException;
 
-    Boolean updateCatBreed(int uid, String breed);
+    Boolean updateCatBreed(int uid, String breed, String authString) throws UnsupportedEncodingException, AuthException;
 
-    Boolean updateCatOwner(int uid, String owner);
+    Boolean updateCatOwner(int uid, String owner, String authString) throws UnsupportedEncodingException, AuthException;
 
-    Boolean updateCat(int uid, String name, int age, String eyesColor, String furColor, String breed, String ownerName);
+    Boolean updateCat(int uid, String name, int age, String eyesColor, String furColor, String breed, String ownerName, String authString) throws UnsupportedEncodingException, AuthException;
 }

@@ -7,7 +7,9 @@ import com.sun.jersey.api.client.WebResource;
 import itmo.rs.model.Cat;
 
 import javax.lang.model.type.PrimitiveType;
+import javax.naming.AuthenticationException;
 import javax.ws.rs.core.MediaType;
+import java.util.Base64;
 import java.util.List;
 
 public class RequestService {
@@ -118,7 +120,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static int createCat(Client client, String name, int age, String eyesColor, String furColor, String breed, String ownerName) {
+    public static int createCat(Client client, String name, int age, String eyesColor, String furColor, String breed, String ownerName) throws AuthenticationException {
         WebResource webResource = client.resource(URL + "/createCat");
         if (name != null && eyesColor != null && furColor != null && breed != null && ownerName != null) {
             webResource = webResource.queryParam("name", name)
@@ -134,7 +136,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static Boolean deleteCat(Client client, int uid) {
+    public static Boolean deleteCat(Client client, int uid) throws AuthenticationException {
         WebResource webResource = client.resource(URL + "/deleteCat");
         webResource = webResource.queryParam("uid", String.valueOf(uid));
         ClientResponse response = executeDelete(webResource);
@@ -143,7 +145,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static Boolean updateCatName(Client client, int uid, String name) {
+    public static Boolean updateCatName(Client client, int uid, String name) throws AuthenticationException {
         WebResource webResource = client.resource(URL + "/updateCatName");
         if (name != null) {
             webResource = webResource.queryParam("uid", String.valueOf(uid)).queryParam("name", name);
@@ -154,7 +156,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static Boolean updateCatDescription(Client client, int uid, String eyesColor, String furColor) {
+    public static Boolean updateCatDescription(Client client, int uid, String eyesColor, String furColor) throws AuthenticationException {
         WebResource webResource = client.resource(URL + "/updateCatDescription");
         if (eyesColor != null && furColor != null) {
             webResource = webResource.queryParam("uid", String.valueOf(uid)).queryParam("eyesColor", eyesColor).queryParam("furColor", furColor);
@@ -165,7 +167,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static Boolean updateCatBreed(Client client, int uid, String breed) {
+    public static Boolean updateCatBreed(Client client, int uid, String breed) throws AuthenticationException {
         WebResource webResource = client.resource(URL + "/updateCatBreed");
         if (breed != null) {
             webResource = webResource.queryParam("uid", String.valueOf(uid)).queryParam("breed", breed);
@@ -176,7 +178,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static Boolean updateCatOwner(Client client, int uid, String owner) {
+    public static Boolean updateCatOwner(Client client, int uid, String owner) throws AuthenticationException {
         WebResource webResource = client.resource(URL + "/updateCatOwner");
         if (owner != null) {
             webResource = webResource.queryParam("uid", String.valueOf(uid)).queryParam("owner", owner);
@@ -187,7 +189,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static Boolean updateCat(Client client, int uid, String name, int age, String eyesColor, String furColor, String breed, String ownerName) {
+    public static Boolean updateCat(Client client, int uid, String name, int age, String eyesColor, String furColor, String breed, String ownerName) throws AuthenticationException {
         WebResource webResource = client.resource(URL + "/updateCat");
         if (eyesColor != null && furColor != null && breed != null && ownerName != null) {
             webResource = webResource.queryParam("uid", String.valueOf(uid))
@@ -206,38 +208,57 @@ public class RequestService {
 
     private static ClientResponse executeGet(WebResource webResource) {
         ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
-        if (response.getStatus() !=
-                ClientResponse.Status.OK.getStatusCode()) {
+        if (response.getStatus() != ClientResponse.Status.OK.getStatusCode()) {
             throw new IllegalStateException("Request failed");
         }
         return response;
     }
 
-    private static ClientResponse executePost(WebResource webResource) {
-        ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).post(ClientResponse.class);
-        if (response.getStatus() !=
-                ClientResponse.Status.OK.getStatusCode()) {
+    private static ClientResponse executePost(WebResource webResource) throws AuthenticationException {
+        ClientResponse response = webResource
+                .header("Authorization", "Basic " + createAuthString())
+                .accept(MediaType.APPLICATION_JSON).post(ClientResponse.class);
+        if (response.getStatus() == ClientResponse.Status.UNAUTHORIZED.getStatusCode()) {
+            throw new AuthenticationException();
+        }
+        if (response.getStatus() != ClientResponse.Status.OK.getStatusCode()) {
             throw new IllegalStateException("Request failed");
         }
         return response;
     }
 
-    private static ClientResponse executePut(WebResource webResource) {
-        ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).put(ClientResponse.class);
-        if (response.getStatus() !=
-                ClientResponse.Status.OK.getStatusCode()) {
+    private static ClientResponse executePut(WebResource webResource) throws AuthenticationException {
+        ClientResponse response = webResource
+                .header("Authorization", "Basic " + createAuthString())
+                .accept(MediaType.APPLICATION_JSON).put(ClientResponse.class);
+        if (response.getStatus() == ClientResponse.Status.UNAUTHORIZED.getStatusCode()) {
+            throw new AuthenticationException();
+        }
+        if (response.getStatus() != ClientResponse.Status.OK.getStatusCode()) {
+            System.out.println("stat " + response.getStatus());
             throw new IllegalStateException("Request failed");
         }
         return response;
     }
 
-    private static ClientResponse executeDelete(WebResource webResource) {
-        ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).delete(ClientResponse.class);
-        if (response.getStatus() !=
-                ClientResponse.Status.OK.getStatusCode()) {
+    private static ClientResponse executeDelete(WebResource webResource) throws AuthenticationException {
+        ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON)
+                .header("Authorization", "Basic " + createAuthString())
+                .delete(ClientResponse.class);
+        if (response.getStatus() == ClientResponse.Status.UNAUTHORIZED.getStatusCode()) {
+            throw new AuthenticationException();
+        }
+        if (response.getStatus() != ClientResponse.Status.OK.getStatusCode()) {
             throw new IllegalStateException("Request failed");
         }
         return response;
+    }
+
+    private static String createAuthString() {
+        String username = "redish";
+        String password = "redish";
+        String authString = username + ":" + password;
+        return new String(Base64.getEncoder().encode(authString.getBytes()));
     }
 
 }
