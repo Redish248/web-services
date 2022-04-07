@@ -1,6 +1,7 @@
 package itmo.rs;
 
 import com.sun.jersey.api.client.Client;
+import itmo.rs.exception.ThrottlingException;
 import itmo.rs.model.Cat;
 import itmo.rs.request.RequestService;
 
@@ -8,13 +9,29 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Client client = Client.create();
 
         System.out.println("==========GET ALL CATS=============");
-        printCats(RequestService.getAllCats(client));
+        //printCats(RequestService.getAllCats(client));
 
-        System.out.println("==========GET ALL CATS BY NAME=============");
+        Thread[] threads = new Thread[15];
+        for(int i = 0; i < 15; i++) {
+            threads[i] = new Thread(() -> {
+                try {
+                    printCats(RequestService.getAllCats(client));
+                } catch (ThrottlingException e) {
+                    System.out.println("EXCEPTION: " + e.getMessage());
+                }
+            });
+            threads[i].start();
+        }
+
+   /*     for(int i = 0; i < 15; i++) {
+            threads[i].join();
+        }*/
+
+        /*System.out.println("==========GET ALL CATS BY NAME=============");
         printCats(RequestService.getCatsByName(client, "Vasya"));
 
         System.out.println("==========GET ALL CATS BY UID=============");
@@ -74,7 +91,7 @@ public class Main {
         System.out.println("==========DELETE CAT=============");
         RequestService.deleteCat(client, uid);
         System.out.println("Cat with id " + uid + " removed");
-        System.out.println();
+        System.out.println();*/
     }
 
     private static void printCats(List<Cat> cats) {

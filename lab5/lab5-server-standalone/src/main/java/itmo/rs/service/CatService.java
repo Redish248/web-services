@@ -1,12 +1,14 @@
 package itmo.rs.service;
 
+import itmo.rs.exception.ThrottlingException;
 import itmo.rs.model.Cat;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public interface CatService {
 
-    List<Cat> getCats();
+    List<Cat> getCats() throws ThrottlingException, ExecutionException, InterruptedException;
 
     List<Cat> getCatsByName(String name);
 

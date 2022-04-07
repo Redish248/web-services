@@ -4,6 +4,7 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.GenericType;
 import com.sun.jersey.api.client.WebResource;
+import itmo.rs.exception.ThrottlingException;
 import itmo.rs.model.Cat;
 
 import javax.lang.model.type.PrimitiveType;
@@ -13,7 +14,7 @@ import java.util.List;
 public class RequestService {
     private static final String URL = "http://localhost:8080/rest/cats";
 
-    public static List<Cat> getAllCats(Client client) {
+    public static List<Cat> getAllCats(Client client) throws ThrottlingException {
         WebResource webResource = client.resource(URL + "/getCats");
         ClientResponse response = executeGet(webResource);
         GenericType<List<Cat>> type = new GenericType<List<Cat>>() {
@@ -21,7 +22,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static List<Cat> getCatsByName(Client client, String name) {
+    public static List<Cat> getCatsByName(Client client, String name) throws ThrottlingException {
         WebResource webResource = client.resource(URL + "/getCatsByName");
         if (name != null) {
             webResource = webResource.queryParam("name", name);
@@ -32,7 +33,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static Cat getCatByUid(Client client, int uid) {
+    public static Cat getCatByUid(Client client, int uid) throws ThrottlingException {
         WebResource webResource = client.resource(URL + "/getCatByUid");
         webResource = webResource.queryParam("uid", String.valueOf(uid));
         ClientResponse response = executeGet(webResource);
@@ -41,7 +42,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static List<Cat> getCatsByDescription(Client client, String eyesColor, String furColor) {
+    public static List<Cat> getCatsByDescription(Client client, String eyesColor, String furColor) throws ThrottlingException {
         WebResource webResource = client.resource(URL + "/getCatsByDescription");
         if (eyesColor != null && furColor != null) {
             webResource = webResource.queryParam("eyesColor", eyesColor).queryParam("furColor", furColor);
@@ -52,7 +53,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static List<Cat> getCatsByBreed(Client client, String breed) {
+    public static List<Cat> getCatsByBreed(Client client, String breed) throws ThrottlingException {
         WebResource webResource = client.resource(URL + "/getCatsByBreed");
         if (breed != null) {
             webResource = webResource.queryParam("breed", breed);
@@ -63,7 +64,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static List<Cat> getCatsByOwner(Client client, String owner) {
+    public static List<Cat> getCatsByOwner(Client client, String owner) throws ThrottlingException {
         WebResource webResource = client.resource(URL + "/getCatsByOwner");
         if (owner != null) {
             webResource = webResource.queryParam("owner", owner);
@@ -74,7 +75,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static List<Cat> getCatsByOwnerAndName(Client client, String name, String owner) {
+    public static List<Cat> getCatsByOwnerAndName(Client client, String name, String owner) throws ThrottlingException {
         WebResource webResource = client.resource(URL + "/getCatsByOwnerAndName");
         if (owner != null) {
             webResource = webResource.queryParam("name", name).queryParam("owner", owner);
@@ -85,7 +86,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static List<Cat> getCatsByNameAndAge(Client client, String name, int age) {
+    public static List<Cat> getCatsByNameAndAge(Client client, String name, int age) throws ThrottlingException {
         WebResource webResource = client.resource(URL + "/getCatsByNameAndAge");
         if (name != null) {
             webResource = webResource.queryParam("name", name).queryParam("age", String.valueOf(age));
@@ -96,7 +97,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static List<Cat> getCatsByBreedAndOwner(Client client, String breed, String owner) {
+    public static List<Cat> getCatsByBreedAndOwner(Client client, String breed, String owner) throws ThrottlingException {
         WebResource webResource = client.resource(URL + "/getCatsByBreedAndOwner");
         if (breed != null && owner != null) {
             webResource = webResource.queryParam("breed", breed).queryParam("owner", owner);
@@ -107,7 +108,7 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    public static List<Cat> getCatsByFullDescription(Client client, String eyesColor, String furColor, String breed) {
+    public static List<Cat> getCatsByFullDescription(Client client, String eyesColor, String furColor, String breed) throws ThrottlingException {
         WebResource webResource = client.resource(URL + "/getCatsByFullDescription");
         if (eyesColor != null && furColor != null && breed != null) {
             webResource = webResource.queryParam("eyesColor", eyesColor).queryParam("furColor", furColor).queryParam("breed", breed);
@@ -204,10 +205,12 @@ public class RequestService {
         return response.getEntity(type);
     }
 
-    private static ClientResponse executeGet(WebResource webResource) {
+    private static ClientResponse executeGet(WebResource webResource) throws ThrottlingException {
         ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
-        if (response.getStatus() !=
-                ClientResponse.Status.OK.getStatusCode()) {
+        if (response.getStatus() == ClientResponse.Status.FORBIDDEN.getStatusCode()) {
+            throw new ThrottlingException("Too many requests!!!!");
+        }
+        if (response.getStatus() != ClientResponse.Status.OK.getStatusCode()) {
             throw new IllegalStateException("Request failed");
         }
         return response;

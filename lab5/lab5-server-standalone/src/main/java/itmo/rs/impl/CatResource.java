@@ -1,8 +1,10 @@
 package itmo.rs.impl;
 
 import itmo.rs.dao.CatDao;
+import itmo.rs.exception.ThrottlingException;
 import itmo.rs.model.Cat;
 import itmo.rs.service.CatService;
+import lombok.AllArgsConstructor;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -13,17 +15,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @Path("/cats")
 @Produces({MediaType.APPLICATION_JSON})
+@AllArgsConstructor
 public class CatResource implements CatService {
     private final CatDao catDao = new CatDao();
 
     @GET
     @Path("/getCats")
     @Override
-    public List<Cat> getCats() {
-        return catDao.getCats();
+    public List<Cat> getCats() throws ThrottlingException, ExecutionException, InterruptedException {
+        return ThrottlingService.submit(catDao::getCats).get();
     }
 
     @GET
