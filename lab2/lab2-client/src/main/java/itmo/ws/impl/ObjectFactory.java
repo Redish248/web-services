@@ -42,6 +42,7 @@ public class ObjectFactory {
     private final static QName _GetCatsByName_QNAME = new QName("http://impl.ws.itmo/", "getCatsByName");
     private final static QName _GetCatByUid_QNAME = new QName("http://impl.ws.itmo/", "getCatByUid");
     private final static QName _GetCatsByBreedResponse_QNAME = new QName("http://impl.ws.itmo/", "getCatsByBreedResponse");
+    private final static QName _AuthException_QNAME = new QName("http://impl.ws.itmo/", "AuthException");
     private final static QName _DeleteCat_QNAME = new QName("http://impl.ws.itmo/", "deleteCat");
     private final static QName _UpdateCatDescriptionResponse_QNAME = new QName("http://impl.ws.itmo/", "updateCatDescriptionResponse");
     private final static QName _GetCatsByNameAndAgeResponse_QNAME = new QName("http://impl.ws.itmo/", "getCatsByNameAndAgeResponse");
@@ -88,6 +89,14 @@ public class ObjectFactory {
      */
     public GetCatsByBreedResponse createGetCatsByBreedResponse() {
         return new GetCatsByBreedResponse();
+    }
+
+    /**
+     * Create an instance of {@link CatServiceFault }
+     * 
+     */
+    public CatServiceFault createCatServiceFault() {
+        return new CatServiceFault();
     }
 
     /**
@@ -506,6 +515,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://impl.ws.itmo/", name = "getCatsByBreedResponse")
     public JAXBElement<GetCatsByBreedResponse> createGetCatsByBreedResponse(GetCatsByBreedResponse value) {
         return new JAXBElement<GetCatsByBreedResponse>(_GetCatsByBreedResponse_QNAME, GetCatsByBreedResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CatServiceFault }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://impl.ws.itmo/", name = "AuthException")
+    public JAXBElement<CatServiceFault> createAuthException(CatServiceFault value) {
+        return new JAXBElement<CatServiceFault>(_AuthException_QNAME, CatServiceFault.class, null, value);
     }
 
     /**

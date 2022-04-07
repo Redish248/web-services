@@ -1,5 +1,6 @@
 package itmo.ws.service;
 
+import itmo.ws.exception.AuthException;
 import itmo.ws.model.Cat;
 
 import java.util.List;
@@ -26,17 +27,17 @@ public interface CatService {
 
     List<Cat> getCatsByFullDescription(String eyesColor, String furColor, String breed);
 
-    int createCat(String name, int age, String eyesColor, String furColor, String breed, String ownerName);
+    int createCat(String name, int age, String eyesColor, String furColor, String breed, String ownerName) throws AuthException;
 
-    boolean deleteCat(int uid);
+    boolean deleteCat(int uid) throws AuthException;
 
-    boolean updateCatName(int uid, String name);
+    boolean updateCatName(int uid, String name) throws AuthException;
 
-    boolean updateCatDescription(int uid, String eyesColor, String furColor);
+    boolean updateCatDescription(int uid, String eyesColor, String furColor) throws AuthException;
 
-    boolean updateCatBreed(int uid, String breed);
+    boolean updateCatBreed(int uid, String breed) throws AuthException;
 
-    boolean updateCatOwner(int uid, String owner);
+    boolean updateCatOwner(int uid, String owner) throws AuthException;
 
-    boolean updateCat(int uid, String name, int age, String eyesColor, String furColor, String breed, String ownerName);
+    boolean updateCat(int uid, String name, int age, String eyesColor, String furColor, String breed, String ownerName) throws AuthException;
 }

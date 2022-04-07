@@ -8,6 +8,7 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
+import javax.xml.ws.FaultAction;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
@@ -200,12 +201,15 @@ public interface CatWebServiceImpl {
      * @param breed
      * @return
      *     returns int
+     * @throws AuthException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "createCat", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.CreateCat")
     @ResponseWrapper(localName = "createCatResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.CreateCatResponse")
-    @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/createCatRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/createCatResponse")
+    @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/createCatRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/createCatResponse", fault = {
+        @FaultAction(className = AuthException.class, value = "http://impl.ws.itmo/CatWebServiceImpl/createCat/Fault/AuthException")
+    })
     public int createCat(
         @WebParam(name = "name", targetNamespace = "")
         String name,
@@ -218,22 +222,29 @@ public interface CatWebServiceImpl {
         @WebParam(name = "breed", targetNamespace = "")
         String breed,
         @WebParam(name = "ownerName", targetNamespace = "")
-        String ownerName);
+        String ownerName)
+        throws AuthException
+    ;
 
     /**
      * 
      * @param uid
      * @return
      *     returns boolean
+     * @throws AuthException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "deleteCat", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.DeleteCat")
     @ResponseWrapper(localName = "deleteCatResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.DeleteCatResponse")
-    @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/deleteCatRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/deleteCatResponse")
+    @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/deleteCatRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/deleteCatResponse", fault = {
+        @FaultAction(className = AuthException.class, value = "http://impl.ws.itmo/CatWebServiceImpl/deleteCat/Fault/AuthException")
+    })
     public boolean deleteCat(
         @WebParam(name = "uid", targetNamespace = "")
-        int uid);
+        int uid)
+        throws AuthException
+    ;
 
     /**
      * 
@@ -321,12 +332,15 @@ public interface CatWebServiceImpl {
      * @param breed
      * @return
      *     returns boolean
+     * @throws AuthException
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "updateCat", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCat")
     @ResponseWrapper(localName = "updateCatResponse", targetNamespace = "http://impl.ws.itmo/", className = "itmo.ws.impl.UpdateCatResponse")
-    @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/updateCatRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/updateCatResponse")
+    @Action(input = "http://impl.ws.itmo/CatWebServiceImpl/updateCatRequest", output = "http://impl.ws.itmo/CatWebServiceImpl/updateCatResponse", fault = {
+        @FaultAction(className = AuthException.class, value = "http://impl.ws.itmo/CatWebServiceImpl/updateCat/Fault/AuthException")
+    })
     public boolean updateCat(
         @WebParam(name = "uid", targetNamespace = "")
         int uid,
@@ -341,6 +355,8 @@ public interface CatWebServiceImpl {
         @WebParam(name = "breed", targetNamespace = "")
         String breed,
         @WebParam(name = "ownerName", targetNamespace = "")
-        String ownerName);
+        String ownerName)
+        throws AuthException
+    ;
 
 }
