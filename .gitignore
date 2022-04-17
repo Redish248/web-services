@@ -67,3 +67,8 @@
 /lab6/lab6-client/.gradle/
 /lab6/lab6-client/build/
 /lab6/lab6-client/*.iml
+
+/lab7/lab7-app/.idea/
+/lab7/lab7-app/.gradle/
+/lab7/lab7-app/build/
+/lab7/lab7-app/*.iml

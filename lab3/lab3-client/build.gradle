@@ -12,6 +12,7 @@ repositories {
 
 
 dependencies {
+    implementation "com.sun.xml.ws:webservices-rt:${wsVersion}"
     implementation "javax.xml.soap:javax.xml.soap-api:${javaxSoapVersion}"
     implementation "com.sun.xml.messaging.saaj:saaj-impl:${saajVersion}"
     implementation "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
